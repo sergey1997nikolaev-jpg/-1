@@ -1,0 +1,1567 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Квалификационный экзамен МПП — Строительная экспертиза и технадзор</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&family=Lora:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0F2547;
+    --navy-mid: #1A3A6B;
+    --blue: #2563EB;
+    --blue-light: #3B82F6;
+    --gold: #D97706;
+    --gold-light: #F59E0B;
+    --green: #059669;
+    --green-light: #D1FAE5;
+    --red: #DC2626;
+    --red-light: #FEE2E2;
+    --orange: #EA580C;
+    --orange-light: #FFF7ED;
+    --bg: #F8FAFC;
+    --surface: #FFFFFF;
+    --border: #E2E8F0;
+    --text: #0F172A;
+    --text-mid: #475569;
+    --text-light: #94A3B8;
+    --shadow: 0 4px 24px rgba(15,37,71,0.10);
+    --shadow-lg: 0 12px 48px rgba(15,37,71,0.18);
+    --radius: 12px;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Montserrat', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    font-size: 15px;
+    line-height: 1.65;
+  }
+
+  /* ---- HEADER ---- */
+  .site-header {
+    background: var(--navy);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 16px rgba(0,0,0,0.25);
+  }
+  .header-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 24px;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+  }
+  .logo-text {
+    font-size: 13px;
+    font-weight: 700;
+    color: #fff;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    line-height: 1.3;
+  }
+  .logo-sub { font-weight: 400; color: #93C5FD; font-size: 11px; text-transform: none; letter-spacing: 0; }
+
+  .header-progress {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex: 1;
+    max-width: 480px;
+  }
+  .progress-bar-wrap {
+    flex: 1;
+    height: 6px;
+    background: rgba(255,255,255,0.15);
+    border-radius: 99px;
+    overflow: hidden;
+  }
+  .progress-bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #3B82F6, #60A5FA);
+    border-radius: 99px;
+    transition: width 0.4s ease;
+    width: 0%;
+  }
+  .progress-text {
+    color: #93C5FD;
+    font-size: 12px;
+    font-weight: 600;
+    white-space: nowrap;
+    font-family: 'IBM Plex Mono', monospace;
+  }
+
+  /* ---- INTRO SCREEN ---- */
+  #screen-intro {
+    max-width: 780px;
+    margin: 60px auto;
+    padding: 0 24px;
+  }
+  .intro-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(37,99,235,0.1);
+    color: var(--blue);
+    border: 1px solid rgba(37,99,235,0.2);
+    border-radius: 99px;
+    padding: 5px 16px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-bottom: 24px;
+  }
+  .intro-title {
+    font-size: clamp(28px, 5vw, 44px);
+    font-weight: 800;
+    color: var(--navy);
+    line-height: 1.15;
+    margin-bottom: 16px;
+    letter-spacing: -0.02em;
+  }
+  .intro-subtitle {
+    font-size: 17px;
+    color: var(--text-mid);
+    margin-bottom: 40px;
+    font-family: 'Lora', serif;
+    font-style: italic;
+  }
+
+  .intro-meta-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 16px;
+    margin-bottom: 40px;
+  }
+  .meta-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 20px;
+    text-align: center;
+    box-shadow: var(--shadow);
+  }
+  .meta-card-num {
+    font-size: 32px;
+    font-weight: 800;
+    color: var(--navy);
+    line-height: 1;
+    font-family: 'IBM Plex Mono', monospace;
+  }
+  .meta-card-label { font-size: 12px; color: var(--text-mid); margin-top: 4px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; }
+
+  .name-form {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 32px;
+    box-shadow: var(--shadow);
+    margin-bottom: 24px;
+  }
+  .name-form h3 { font-size: 16px; font-weight: 700; color: var(--navy); margin-bottom: 20px; }
+  .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px; }
+  @media(max-width:560px) { .field-row { grid-template-columns: 1fr; } }
+  .field label { display: block; font-size: 12px; font-weight: 700; color: var(--text-mid); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 6px; }
+  .field input {
+    width: 100%;
+    padding: 10px 14px;
+    border: 1.5px solid var(--border);
+    border-radius: 8px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+    color: var(--text);
+    background: var(--bg);
+    transition: border-color 0.2s;
+    outline: none;
+  }
+  .field input:focus { border-color: var(--blue); background: #fff; }
+
+  .btn-start {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--navy);
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    padding: 16px 36px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    letter-spacing: 0.02em;
+    transition: all 0.2s;
+    box-shadow: 0 4px 16px rgba(15,37,71,0.25);
+  }
+  .btn-start:hover { background: var(--navy-mid); transform: translateY(-1px); box-shadow: 0 8px 24px rgba(15,37,71,0.3); }
+  .btn-start:active { transform: translateY(0); }
+  .btn-arrow { font-size: 18px; }
+
+  .rules-list {
+    background: #EFF6FF;
+    border: 1px solid #BFDBFE;
+    border-radius: var(--radius);
+    padding: 20px 24px;
+    margin-bottom: 32px;
+  }
+  .rules-list h4 { font-size: 13px; font-weight: 700; color: var(--navy); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 12px; }
+  .rules-list li { list-style: none; padding: 4px 0; font-size: 13px; color: var(--text-mid); display: flex; gap: 10px; }
+  .rules-list li::before { content: "▸"; color: var(--blue); flex-shrink: 0; }
+
+  /* ---- EXAM SCREEN ---- */
+  #screen-exam { display: none; max-width: 900px; margin: 0 auto; padding: 32px 24px; }
+
+  /* Block navigation */
+  .block-nav {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 32px;
+    flex-wrap: wrap;
+  }
+  .block-tab {
+    padding: 8px 18px;
+    border-radius: 99px;
+    font-size: 12px;
+    font-weight: 700;
+    cursor: pointer;
+    border: 2px solid var(--border);
+    background: var(--surface);
+    color: var(--text-mid);
+    transition: all 0.2s;
+    letter-spacing: 0.04em;
+  }
+  .block-tab:hover { border-color: var(--blue-light); color: var(--blue); }
+  .block-tab.active { background: var(--navy); color: #fff; border-color: var(--navy); }
+  .block-tab.completed { border-color: var(--green); color: var(--green); background: var(--green-light); }
+  .block-tab.completed.active { background: var(--green); color: #fff; }
+
+  /* Block header */
+  .block-header {
+    background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 100%);
+    border-radius: var(--radius);
+    padding: 28px 32px;
+    margin-bottom: 28px;
+    color: #fff;
+    position: relative;
+    overflow: hidden;
+  }
+  .block-header::after {
+    content: '';
+    position: absolute;
+    right: -20px; top: -20px;
+    width: 120px; height: 120px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.04);
+  }
+  .block-num { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: #93C5FD; margin-bottom: 6px; }
+  .block-title { font-size: 22px; font-weight: 800; margin-bottom: 8px; letter-spacing: -0.01em; }
+  .block-desc { font-size: 13px; color: rgba(255,255,255,0.7); font-family: 'Lora', serif; font-style: italic; }
+  .block-score-badge {
+    position: absolute;
+    right: 28px; top: 28px;
+    background: rgba(255,255,255,0.12);
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 8px;
+    padding: 8px 14px;
+    text-align: center;
+  }
+  .block-score-num { font-size: 22px; font-weight: 800; font-family: 'IBM Plex Mono', monospace; }
+  .block-score-label { font-size: 10px; color: rgba(255,255,255,0.6); text-transform: uppercase; letter-spacing: 0.05em; }
+
+  /* Level section */
+  .level-section { margin-bottom: 36px; }
+  .level-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 20px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid var(--border);
+  }
+  .level-pill {
+    padding: 4px 14px;
+    border-radius: 99px;
+    font-size: 11px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+  }
+  .level-pill.a { background: #DBEAFE; color: #1E40AF; }
+  .level-pill.b { background: #FEF3C7; color: #92400E; }
+  .level-pill.c { background: #FEE2E2; color: #991B1B; }
+  .level-title { font-size: 14px; font-weight: 700; color: var(--text-mid); }
+  .level-points { margin-left: auto; font-size: 12px; font-family: 'IBM Plex Mono', monospace; color: var(--text-light); }
+
+  /* Question card */
+  .question-card {
+    background: var(--surface);
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius);
+    margin-bottom: 16px;
+    overflow: hidden;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+  .question-card:hover { box-shadow: var(--shadow); }
+  .question-card.answered { border-color: #BFDBFE; }
+  .question-card.answered.correct { border-color: #6EE7B7; }
+  .question-card.answered.wrong { border-color: #FCA5A5; }
+
+  .q-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 20px 24px 16px;
+  }
+  .q-num {
+    background: var(--navy);
+    color: #fff;
+    width: 32px; height: 32px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 700;
+    flex-shrink: 0;
+    font-family: 'IBM Plex Mono', monospace;
+    margin-top: 1px;
+  }
+  .q-num.level-b { background: var(--orange); }
+  .q-num.level-c { background: var(--red); }
+  .q-text { font-size: 14px; font-weight: 600; color: var(--text); line-height: 1.6; flex: 1; }
+  .q-points { font-size: 11px; font-family: 'IBM Plex Mono', monospace; color: var(--text-light); flex-shrink: 0; margin-top: 4px; }
+
+  .scenario-box {
+    margin: 0 24px 16px;
+    background: #EFF6FF;
+    border-left: 3px solid var(--blue);
+    border-radius: 0 8px 8px 0;
+    padding: 12px 16px;
+    font-size: 13px;
+    color: var(--navy-mid);
+    font-family: 'Lora', serif;
+    font-style: italic;
+  }
+
+  /* Options */
+  .options-list { padding: 0 24px 20px; display: flex; flex-direction: column; gap: 8px; }
+  .option-label {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 12px 16px;
+    border: 1.5px solid var(--border);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.15s;
+    user-select: none;
+    background: var(--bg);
+  }
+  .option-label:hover { border-color: var(--blue-light); background: #EFF6FF; }
+  .option-label input[type="radio"] { display: none; }
+  .option-label.selected { border-color: var(--blue); background: #EFF6FF; }
+  .option-label.selected .opt-letter { background: var(--blue); color: #fff; }
+  .option-label.correct-answer { border-color: var(--green); background: var(--green-light); }
+  .option-label.correct-answer .opt-letter { background: var(--green); color: #fff; }
+  .option-label.wrong-answer { border-color: var(--red); background: var(--red-light); }
+  .option-label.wrong-answer .opt-letter { background: var(--red); color: #fff; }
+  .opt-letter {
+    width: 26px; height: 26px;
+    border-radius: 6px;
+    background: var(--border);
+    color: var(--text-mid);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 12px; font-weight: 700;
+    flex-shrink: 0;
+    transition: all 0.15s;
+  }
+  .opt-text { font-size: 13px; color: var(--text); line-height: 1.55; padding-top: 2px; }
+
+  /* Open question textarea */
+  .open-area { padding: 0 24px 20px; }
+  .open-textarea {
+    width: 100%;
+    min-height: 120px;
+    padding: 14px 16px;
+    border: 1.5px solid var(--border);
+    border-radius: 8px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 13px;
+    line-height: 1.65;
+    color: var(--text);
+    background: var(--bg);
+    resize: vertical;
+    transition: border-color 0.2s;
+    outline: none;
+  }
+  .open-textarea:focus { border-color: var(--blue); background: #fff; }
+  .open-textarea.has-content { border-color: #BFDBFE; background: #F0F7FF; }
+  .char-count { font-size: 11px; color: var(--text-light); font-family: 'IBM Plex Mono', monospace; text-align: right; margin-top: 4px; }
+
+  /* Answer reveal */
+  .answer-reveal {
+    margin: 0 24px 20px;
+    background: linear-gradient(135deg, #F0FDF4, #DCFCE7);
+    border: 1px solid #86EFAC;
+    border-radius: 8px;
+    padding: 14px 18px;
+    display: none;
+  }
+  .answer-reveal.show { display: block; }
+  .answer-reveal-label { font-size: 11px; font-weight: 700; color: var(--green); text-transform: uppercase; letter-spacing: 0.07em; margin-bottom: 6px; }
+  .answer-reveal-text { font-size: 13px; color: #065F46; line-height: 1.6; font-family: 'Lora', serif; font-style: italic; }
+
+  /* Block actions */
+  .block-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 32px;
+    padding-top: 24px;
+    border-top: 1px solid var(--border);
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .btn {
+    padding: 12px 28px;
+    border-radius: 8px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    border: none;
+    transition: all 0.2s;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .btn-primary { background: var(--navy); color: #fff; box-shadow: 0 4px 12px rgba(15,37,71,0.2); }
+  .btn-primary:hover { background: var(--navy-mid); transform: translateY(-1px); }
+  .btn-secondary { background: var(--surface); color: var(--text); border: 1.5px solid var(--border); }
+  .btn-secondary:hover { border-color: var(--blue); color: var(--blue); }
+  .btn-check { background: var(--gold); color: #fff; box-shadow: 0 4px 12px rgba(217,119,6,0.25); }
+  .btn-check:hover { background: var(--gold-light); transform: translateY(-1px); }
+  .btn-next { background: var(--blue); color: #fff; box-shadow: 0 4px 12px rgba(37,99,235,0.25); }
+  .btn-next:hover { background: var(--blue-light); transform: translateY(-1px); }
+
+  .answers-toggle {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    color: var(--text-mid);
+    cursor: pointer;
+    user-select: none;
+  }
+  .toggle-switch {
+    width: 36px; height: 20px;
+    background: var(--border);
+    border-radius: 99px;
+    position: relative;
+    transition: background 0.2s;
+    flex-shrink: 0;
+  }
+  .toggle-switch.on { background: var(--green); }
+  .toggle-switch::after {
+    content: '';
+    position: absolute;
+    width: 14px; height: 14px;
+    background: #fff;
+    border-radius: 50%;
+    top: 3px; left: 3px;
+    transition: left 0.2s;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.2);
+  }
+  .toggle-switch.on::after { left: 19px; }
+
+  /* ---- RESULTS SCREEN ---- */
+  #screen-results { display: none; max-width: 860px; margin: 0 auto; padding: 40px 24px; }
+
+  .results-hero {
+    background: linear-gradient(135deg, var(--navy) 0%, #1E3A8A 100%);
+    border-radius: 16px;
+    padding: 48px 40px;
+    text-align: center;
+    color: #fff;
+    margin-bottom: 32px;
+    position: relative;
+    overflow: hidden;
+  }
+  .results-hero::before {
+    content: '';
+    position: absolute;
+    width: 300px; height: 300px;
+    border-radius: 50%;
+    border: 1px solid rgba(255,255,255,0.06);
+    top: -100px; right: -100px;
+  }
+  .results-name { font-size: 13px; color: #93C5FD; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 8px; }
+  .results-score-big {
+    font-size: clamp(60px, 12vw, 96px);
+    font-weight: 800;
+    font-family: 'IBM Plex Mono', monospace;
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+  .results-score-max { font-size: 18px; color: rgba(255,255,255,0.5); margin-bottom: 20px; }
+  .results-level-badge {
+    display: inline-block;
+    padding: 10px 28px;
+    border-radius: 99px;
+    font-size: 15px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-bottom: 16px;
+  }
+  .results-level-desc { font-size: 14px; color: rgba(255,255,255,0.7); font-family: 'Lora', serif; font-style: italic; max-width: 500px; margin: 0 auto; }
+
+  .results-blocks {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 16px;
+    margin-bottom: 28px;
+  }
+  .result-block-card {
+    background: var(--surface);
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius);
+    padding: 20px 24px;
+    box-shadow: var(--shadow);
+  }
+  .rbc-title { font-size: 13px; font-weight: 700; color: var(--text); margin-bottom: 14px; }
+  .rbc-bars { display: flex; flex-direction: column; gap: 6px; }
+  .rbc-bar-row { display: flex; align-items: center; gap: 8px; }
+  .rbc-bar-label { font-size: 11px; font-weight: 600; color: var(--text-mid); width: 12px; }
+  .rbc-bar-track { flex: 1; height: 8px; background: var(--border); border-radius: 99px; overflow: hidden; }
+  .rbc-bar-fill { height: 100%; border-radius: 99px; }
+  .rbc-bar-row.a .rbc-bar-fill { background: #3B82F6; }
+  .rbc-bar-row.b .rbc-bar-fill { background: #F59E0B; }
+  .rbc-bar-row.c .rbc-bar-fill { background: #EF4444; }
+  .rbc-score { font-size: 11px; font-family: 'IBM Plex Mono', monospace; color: var(--text-mid); width: 40px; text-align: right; }
+
+  .rbc-total { display: flex; justify-content: space-between; align-items: center; margin-top: 14px; padding-top: 10px; border-top: 1px solid var(--border); }
+  .rbc-total-label { font-size: 11px; font-weight: 700; text-transform: uppercase; color: var(--text-mid); letter-spacing: 0.05em; }
+  .rbc-total-score { font-size: 18px; font-weight: 800; font-family: 'IBM Plex Mono', monospace; color: var(--navy); }
+
+  .recommendations-card {
+    background: var(--surface);
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius);
+    padding: 28px 32px;
+    margin-bottom: 24px;
+    box-shadow: var(--shadow);
+  }
+  .rec-title { font-size: 16px; font-weight: 800; color: var(--navy); margin-bottom: 16px; }
+  .rec-item { display: flex; gap: 12px; padding: 12px 0; border-bottom: 1px solid var(--border); }
+  .rec-item:last-child { border-bottom: none; }
+  .rec-icon { font-size: 20px; flex-shrink: 0; }
+  .rec-text strong { display: block; font-size: 13px; font-weight: 700; color: var(--text); margin-bottom: 2px; }
+  .rec-text span { font-size: 12px; color: var(--text-mid); }
+
+  .results-actions { display: flex; gap: 12px; flex-wrap: wrap; }
+  .btn-print { background: var(--surface); color: var(--navy); border: 1.5px solid var(--navy); }
+  .btn-print:hover { background: var(--navy); color: #fff; }
+  .btn-restart { background: var(--bg); color: var(--text-mid); border: 1.5px solid var(--border); }
+
+  /* Autosave indicator */
+  .save-indicator {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: var(--navy);
+    color: #fff;
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-size: 12px;
+    font-weight: 600;
+    opacity: 0;
+    transform: translateY(8px);
+    transition: all 0.3s;
+    pointer-events: none;
+    z-index: 999;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .save-indicator.show { opacity: 1; transform: translateY(0); }
+
+  /* Completion banner */
+  .completion-banner {
+    background: linear-gradient(135deg, #064E3B, #065F46);
+    color: #fff;
+    border-radius: var(--radius);
+    padding: 16px 24px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 24px;
+    display: none;
+  }
+  .completion-banner.show { display: flex; }
+  .completion-icon { font-size: 24px; }
+  .completion-text strong { display: block; font-size: 14px; font-weight: 700; }
+  .completion-text span { font-size: 12px; color: rgba(255,255,255,0.7); }
+
+  @media print {
+    .site-header, .block-nav, .block-actions, .save-indicator { display: none !important; }
+    .question-card { break-inside: avoid; }
+  }
+
+  /* Animations */
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .question-card { animation: fadeInUp 0.3s ease both; }
+  .question-card:nth-child(2) { animation-delay: 0.05s; }
+  .question-card:nth-child(3) { animation-delay: 0.08s; }
+  .question-card:nth-child(4) { animation-delay: 0.10s; }
+
+  .warn-box {
+    background: var(--orange-light);
+    border: 1px solid #FED7AA;
+    border-left: 3px solid var(--orange);
+    border-radius: 0 8px 8px 0;
+    padding: 10px 16px;
+    font-size: 12px;
+    color: #7C2D12;
+    margin: 0 24px 16px;
+    font-style: italic;
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="site-header">
+  <div class="header-inner">
+    <div class="logo-text">
+      СЭиТ<br>
+      <span class="logo-sub">Строительная экспертиза и технадзор</span>
+    </div>
+    <div class="header-progress">
+      <div class="progress-bar-wrap">
+        <div class="progress-bar-fill" id="globalProgress"></div>
+      </div>
+      <div class="progress-text" id="progressText">0 / 100</div>
+    </div>
+  </div>
+</header>
+
+<!-- INTRO -->
+<div id="screen-intro">
+  <div class="intro-badge">📋 Внутренний документ</div>
+  <h1 class="intro-title">Квалификационный экзамен МПП</h1>
+  <p class="intro-subtitle">Технические знания в области обследования зданий и сооружений</p>
+
+  <div class="intro-meta-grid">
+    <div class="meta-card">
+      <div class="meta-card-num">100</div>
+      <div class="meta-card-label">Вопросов</div>
+    </div>
+    <div class="meta-card">
+      <div class="meta-card-num">195</div>
+      <div class="meta-card-label">Макс. баллов</div>
+    </div>
+    <div class="meta-card">
+      <div class="meta-card-num">5</div>
+      <div class="meta-card-label">Блоков</div>
+    </div>
+    <div class="meta-card">
+      <div class="meta-card-num">90'</div>
+      <div class="meta-card-label">Минут</div>
+    </div>
+  </div>
+
+  <ul class="rules-list">
+    <h4>Правила прохождения</h4>
+    <li>Выбирайте один вариант ответа в вопросах A и B</li>
+    <li>В вопросах уровня C напишите развёрнутый ответ своими словами</li>
+    <li>Прогресс сохраняется автоматически — можно вернуться позже</li>
+    <li>Просмотр правильных ответов — после выбора варианта</li>
+    <li>Использование нормативной документации — запрещено</li>
+  </ul>
+
+  <div class="name-form">
+    <h3>Заполните перед началом</h3>
+    <div class="field-row">
+      <div class="field">
+        <label>Фамилия Имя</label>
+        <input type="text" id="inputName" placeholder="Иванов Иван" autocomplete="name">
+      </div>
+      <div class="field">
+        <label>Дата</label>
+        <input type="date" id="inputDate">
+      </div>
+    </div>
+    <div class="field-row">
+      <div class="field">
+        <label>Должность</label>
+        <input type="text" id="inputRole" placeholder="Менеджер по продажам" value="МПП">
+      </div>
+      <div class="field">
+        <label>Проверяющий</label>
+        <input type="text" id="inputChecker" placeholder="ФИО проверяющего">
+      </div>
+    </div>
+  </div>
+
+  <button class="btn-start" onclick="startExam()">
+    Начать экзамен <span class="btn-arrow">→</span>
+  </button>
+</div>
+
+<!-- EXAM -->
+<div id="screen-exam">
+  <div class="block-nav" id="blockNav"></div>
+  <div id="blockContent"></div>
+</div>
+
+<!-- RESULTS -->
+<div id="screen-results">
+  <div class="results-hero" id="resultsHero"></div>
+  <div class="results-blocks" id="resultsBlocks"></div>
+  <div class="recommendations-card" id="recommendationsCard"></div>
+  <div class="results-actions">
+    <button class="btn btn-primary btn-print" onclick="window.print()">🖨 Распечатать результаты</button>
+    <button class="btn btn-restart" onclick="restartExam()">↺ Пройти заново</button>
+  </div>
+</div>
+
+<!-- SAVE INDICATOR -->
+<div class="save-indicator" id="saveIndicator">✓ Сохранено</div>
+
+<script>
+// ============================================================
+// DATA — ALL 100 QUESTIONS
+// ============================================================
+const EXAM_DATA = [
+  {
+    id: 1,
+    title: "Конструктив зданий и сооружений",
+    desc: "Несущие и ограждающие конструкции, типы фундаментов, конструктивные схемы",
+    maxA: 10, maxB: 14, maxC: 15,
+    questions: [
+      // LEVEL A
+      { id:"A1.1", level:"a", pts:1, text:"Что из перечисленного является несущей конструкцией здания?",
+        opts:["Навесной фасад из алюминиевых панелей","Железобетонная колонна, воспринимающая нагрузку от перекрытия","Ненесущая перегородка из гипсокартона","Кровельное покрытие из профнастила"],
+        correct:1, answer:"Несущая конструкция — та, которая воспринимает и передаёт нагрузки (собственный вес + эксплуатационные). ЖБ колонна — классический пример. Навесной фасад, перегородка и кровельное покрытие — ограждающие или декоративные элементы." },
+      { id:"A1.2", level:"a", pts:1, text:"Что является ограждающей конструкцией здания?",
+        opts:["Монолитная ЖБ стена, воспринимающая нагрузку от плит","Ригель железобетонного каркаса","Наружная стена из кирпича, отделяющая помещение от улицы, но не несущая","Свайный фундамент"],
+        correct:2, answer:"Ограждающие конструкции защищают от внешней среды, но не воспринимают основных силовых нагрузок. Кирпичная ненесущая стена — типичный пример. Свая, ригель, несущая монолитная стена — несущие элементы." },
+      { id:"A1.3", level:"a", pts:1, text:"Как называется горизонтальный несущий элемент каркасного здания, опирающийся на колонны и принимающий нагрузку от плит перекрытия?",
+        opts:["Пилон","Ригель","Диафрагма жёсткости","Продольная балка"],
+        correct:1, answer:"Ригель — горизонтальный элемент жёсткости в каркасной системе, соединяет колонны и воспринимает нагрузки от перекрытий. Пилон — массивный вертикальный элемент. Диафрагма жёсткости — плоский вертикальный элемент для восприятия горизонтальных нагрузок." },
+      { id:"A1.4", level:"a", pts:1, text:"Какой тип фундамента применяется при слабых грунтах для равномерной передачи нагрузок?",
+        opts:["Ленточный мелкого заложения","Столбчатый монолитный","Плитный (плавающий)","Свайно-ростверковый с опиранием на твёрдые слои"],
+        correct:2, answer:"Плитный (плавающий) фундамент распределяет нагрузку по всей площади основания, снижая удельное давление на слабый грунт." },
+      { id:"A1.5", level:"a", pts:1, text:"Что такое «техническое подполье» (техподполье) с инженерной точки зрения?",
+        opts:["Декоративное пространство под первым этажом","Помещение ниже отметки планировки, предназначенное для размещения инженерных коммуникаций","Нижний этаж без окон, используемый под склад","Конструктивный элемент, обеспечивающий жёсткость здания"],
+        correct:1, answer:"Техническое подполье — пространство под первым этажом для прокладки и обслуживания инженерных сетей. При обследовании туда необходимо получить доступ." },
+      { id:"A1.6", level:"a", pts:1, text:"Как называется конструктивная система, в которой нагрузки воспринимаются колоннами и ригелями, а стены — ненесущие?",
+        opts:["Бескаркасная с несущими стенами","Каркасная система","Крупнопанельная система","Объёмно-блочная система"],
+        correct:1, answer:"Каркасная система = несущий скелет (колонны + ригели + перекрытия) + ненесущее заполнение. В бескаркасных системах несущими являются стены." },
+      { id:"A1.7", level:"a", pts:1, text:"Что такое «деформационный шов» в здании?",
+        opts:["Трещина в несущей стене, требующая срочного ремонта","Разрез, разделяющий здание на секции для компенсации температурных и осадочных деформаций","Специальный элемент фасада для отвода воды","Соединение между старой и новой частями здания"],
+        correct:1, answer:"Деформационный шов — намеренный разрез (зазор), позволяющий отдельным частям здания перемещаться независимо. Это запроектированный элемент, а не дефект." },
+      { id:"A1.8", level:"a", pts:1, text:"Какая конструкция называется «диафрагмой жёсткости»?",
+        opts:["Горизонтальная ЖБ плита перекрытия","Вертикальный плоский элемент (стена или рама), обеспечивающий устойчивость здания к горизонтальным нагрузкам","Наклонная кровельная конструкция","Горизонтальный несущий элемент, передающий нагрузку от стен к фундаменту"],
+        correct:1, answer:"Диафрагма жёсткости — стена, работающая как вертикальная пластина для восприятия горизонтальных сил. Лифтовые шахты, лестничные клетки — классические диафрагмы жёсткости." },
+      { id:"A1.9", level:"a", pts:1, text:"Что означает термин «несущая способность конструкции»?",
+        opts:["Способность выдерживать декоративные нагрузки","Способность воспринимать расчётные нагрузки без разрушения и недопустимых деформаций","Долговечность конструкции во времени","Устойчивость к химическому воздействию"],
+        correct:1, answer:"Несущая способность — ключевое понятие в обследовании. Именно её снижение является основой для присвоения категорий «ограниченно работоспособное» и «аварийное» по ГОСТ 31937-2024." },
+      { id:"A1.10", level:"a", pts:1, text:"Что такое «монолитный железобетон»?",
+        opts:["Сборные ЖБ элементы, доставленные с завода","Сталежелезобетонная конструкция с профнастилом","Бетон, залитый и твердеющий непосредственно на строительной площадке в опалубке с армированием","Бетон с добавлением гравия без арматуры"],
+        correct:2, answer:"Монолитный — значит «отлитый на месте». В отличие от сборного ЖБ (заводские панели), монолит позволяет реализовывать любую форму. Документация включает журналы бетонирования." },
+      // LEVEL B
+      { id:"B1.1", level:"b", pts:2, text:"Заказчик говорит: «У нас кирпичный дом 1970 года, хотим снести стену между комнатами». Какой ПЕРВЫЙ вопрос вы должны задать?",
+        warn:"ВНИМАНИЕ: ответы похожи — читайте внимательно",
+        opts:["Какой этаж квартиры?","Является ли эта стена несущей или ненесущей?","Сколько метров стена в длину?","Когда планируется перепланировка?"],
+        correct:1, answer:"При любом запросе на снос стены ключевой вопрос — несущая ли она. Снос несущей стены без расчётного обоснования категорически недопустим. Это определяет сложность и стоимость работ." },
+      { id:"B1.2", level:"b", pts:2, text:"Что НЕ является несущим элементом типового кирпичного дома серии II-18 (1960–70-х гг.)?",
+        warn:"ВНИМАНИЕ: ответы похожи — читайте внимательно",
+        opts:["Наружная продольная кирпичная стена","Поперечные кирпичные стены (через каждые 3–4 м)","Перегородки между комнатами из кирпича в 1/2 кирпича","Лестничная клетка из кирпичных стен"],
+        correct:2, answer:"Несущие: продольные наружные стены, поперечные стены-диафрагмы, лестничная клетка. Перегородки в 1/2 кирпича — ненесущие. Но перегородки в 1 кирпич уже могут быть несущими — нужно проверять." },
+      { id:"B1.3", level:"b", pts:2, text:"В чём разница между «плитой перекрытия» и «плитой покрытия» (кровельной)?",
+        warn:"ВНИМАНИЕ: ответы похожи — читайте внимательно",
+        opts:["Принципиальной разницы нет — это одна и та же конструкция","Плита перекрытия разделяет этажи; плита покрытия — верхний элемент здания, к ней предъявляются доп. требования по теплоизоляции и гидроизоляции","Плита покрытия всегда монолитная, перекрытие — только сборное","Плита перекрытия — несущая, плита покрытия — ограждающая, не несущая"],
+        correct:1, answer:"Оба элемента несущие, но плита покрытия — верхний элемент здания. К ней предъявляются требования по гидроизоляции, теплотехническим характеристикам, снеговой нагрузке." },
+      { id:"B1.4", level:"b", pts:2, text:"Что такое «шурф» при обследовании фундамента?",
+        warn:"ВНИМАНИЕ: ответы похожи — читайте внимательно",
+        opts:["Буровая скважина для геологического изучения грунтов","Траншея или яма, вырытая вручную для визуального осмотра тела фундамента и грунта основания","Зондирование грунта с помощью зонда без вскрытия","Отверстие в стене для закладки датчиков мониторинга"],
+        correct:1, answer:"Шурф — ручная выемка грунта рядом с фундаментом для его визуального осмотра: глубина заложения, состояние бетона, гидроизоляция. По ГОСТ 31937-2024 при комплексном обследовании — обязателен." },
+      { id:"B1.5", level:"b", pts:2, text:"Заказчик: «Это промышленное здание 1980-х, металлический каркас». Что из перечисленного ОБЯЗАТЕЛЬНО выяснить до КП?",
+        warn:"ВНИМАНИЕ: ответы похожи — читайте внимательно",
+        opts:["Точный год постройки и фамилию архитектора","Размер здания в плане и ЦЕЛЬ обследования (ТЗК, реконструкция, ЭПБ?)","Количество работников предприятия","Наличие парковки у здания"],
+        correct:1, answer:"Площадь = объём работы = стоимость. Цель определяет состав работ. Для промышленных объектов может потребоваться ЭПБ — это совершенно другой продукт, нормативная база (ФЗ-116, Ростехнадзор) и цена." },
+      { id:"B1.6", level:"b", pts:2, text:"Что такое «конструктивная схема здания»?",
+        warn:"ВНИМАНИЕ: ответы похожи — читайте внимательно",
+        opts:["Архитектурный проект с планировкой помещений","Схема расположения инженерных коммуникаций","Совокупность несущих конструкций и способ их взаимодействия для восприятия нагрузок и обеспечения устойчивости","Схема пожарной эвакуации здания"],
+        correct:2, answer:"Конструктивная схема — принципиальное решение о том, как здание несёт нагрузки. Основные схемы: бескаркасная (несущие стены), каркасная, смешанная. Понимание схемы критично для выбора объектов осмотра." },
+      { id:"B1.7", level:"b", pts:2, text:"Заказчик: «В нашем здании 1975 г. произошло обрушение части кровли». Какой ответ МПП должен дать В ПЕРВУЮ ОЧЕРЕДЬ?",
+        warn:"ВНИМАНИЕ: ответы похожи — читайте внимательно",
+        opts:["Попросить фотографии и ждать","Назвать стоимость технического заключения","Сообщить, что при признаках аварийного состояния требуется срочный выезд; уточнить, ограничили ли доступ людей в опасную зону","Сказать, что обследование займёт 2–3 недели"],
+        correct:2, answer:"При реальной угрозе обрушения — вопрос жизни важнее коммерции. Нужно: (1) убедиться, что люди выведены; (2) организовать срочный выезд. По ГОСТ 31937-2024 «аварийное состояние» требует немедленных мероприятий." },
+      // LEVEL C
+      { id:"C1.1", level:"c", pts:5, type:"open", text:"РАЗВЁРНУТЫЙ ОТВЕТ. Заказчик: «Нам нужно комплексное обследование 5-этажного офисного здания 1985 г., монолитный каркас, 3 000 м². Хотим добавить 2 этажа». Перечислите минимум 6 вопросов, которые МПП должен задать до КП, и кратко объясните, зачем каждый.",
+        answer:"1. Есть ли проектная документация? → Без проекта работы дороже (нужны обмеры). 2. Здание используется сейчас? → Определяет условия работы и доступ. 3. Проводились ли ранее обследования? → Сократит объём. 4. Цель надстройки: разрешение на строительство или ТЗ для проектировщика? → Влияет на состав документа. 5. Есть ли видимые дефекты? → Добавляем детальное обследование. 6. Срок — когда нужен результат? → Влияет на стоимость. Дополнительно: нужны ли откопка шурфов, испытания бетона, поверочный расчёт каркаса." },
+      { id:"C1.2", level:"c", pts:5, type:"open", text:"РАЗВЁРНУТЫЙ ОТВЕТ. Объясните разницу между «Техническим заключением» (ТЗК), «Техническим паспортом», «Детальным обследованием» и «Комплексным обследованием по ГОСТ 31937-2024». Когда заказчику нужен каждый из этих документов?",
+        answer:"ТЗК — итоговый документ любого обследования с выводами и рекомендациями. Техпаспорт — документ БТИ с геометрическими характеристиками, не наш продукт. Детальное обследование — углублённое изучение с вскрытиями и испытаниями материалов; нужно при аварийности и реконструкции. Комплексное обследование по ГОСТ 31937-2024 — полное обследование всех элементов здания (визуальный + инструментальный этап, оценка по 4 категориям). Когда нужно: реконструкция/надстройка, требование госорганов, сделки купли-продажи, аварийные ситуации." },
+      { id:"C1.3", level:"c", pts:5, type:"open", text:"РАЗВЁРНУТЫЙ ОТВЕТ. Назовите 4 категории технического состояния по ГОСТ 31937-2024. Для каждой объясните: как выглядит на практике и какие дальнейшие действия предписаны.",
+        answer:"1. Нормативное — все параметры соответствуют проекту. Действия: обычная эксплуатация. 2. Работоспособное — есть отклонения, но несущая способность обеспечена. Действия: устранение дефектов в плановом порядке. 3. Ограниченно работоспособное — дефекты снизили несущую способность, но угрозы внезапного обрушения нет. Действия: обязательные ремонтно-восстановительные мероприятия или мониторинг. 4. Аварийное — исчерпание несущей способности, угроза обрушения. Действия: немедленно — эвакуация, ограждение, срочный ремонт/снос." },
+    ]
+  },
+  {
+    id: 2,
+    title: "Классификация и анализ дефектов",
+    desc: "Трещины, коррозия, физический износ, маяки, методы выявления дефектов",
+    maxA: 10, maxB: 14, maxC: 15,
+    questions: [
+      { id:"A2.1", level:"a", pts:1, text:"Заказчик: «На стене здания — тонкая горизонтальная трещина по всей длине, проходит по шву кирпичной кладки». Что это скорее всего означает?",
+        opts:["Это нормальный усадочный шов — ничего страшного","Расслоение кирпичной кладки по горизонтальному шву — может свидетельствовать об изгибе или расслоении стены, требует проверки","Трещина от теплового расширения — не опасно","Следствие атмосферных осадков — нужна только покраска"],
+        correct:1, answer:"Горизонтальная трещина по шву кладки — тревожный сигнал. Может означать: изгиб стены от горизонтальной нагрузки или расслоение кладки. Требует обязательного обследования." },
+      { id:"A2.2", level:"a", pts:1, text:"Какая трещина в несущей стене является НАИБОЛЕЕ ОПАСНОЙ с точки зрения несущей способности?",
+        opts:["Поверхностная трещина в штукатурке шириной 0,3 мм","Сквозная наклонная (диагональная) трещина шириной 5 мм, пронизывающая всю толщину несущей стены","Трещина по швам кладки в ненесущей перегородке","Волосяная трещина в оштукатуренном потолке"],
+        correct:1, answer:"Сквозная диагональная трещина в несущей стене — наиболее опасный признак. Диагональные трещины в стенах часто свидетельствуют о неравномерной осадке фундамента. 5 мм + сквозная = близко к аварийному состоянию." },
+      { id:"A2.3", level:"a", pts:1, text:"Что такое «маяк» при обследовании трещин?",
+        opts:["Световое устройство для работы в тёмных помещениях","Небольшая полоска гипса или пластины, которую устанавливают поперёк трещины для контроля её развития","Специальный прибор для измерения ширины раскрытия трещин","Пометка на чертеже, обозначающая место дефекта"],
+        correct:1, answer:"Маяк — простейший индикатор. Если трещина «живая» — маяк треснет или сместится. Если цел через 2–4 недели — трещина стабилизировалась. МПП может порекомендовать клиенту установить маяк самостоятельно." },
+      { id:"A2.4", level:"a", pts:1, text:"Что такое «карбонизация бетона» и почему это важно при обследовании?",
+        opts:["Загрязнение поверхности бетона углеродом","Процесс нейтрализации щелочной среды бетона углекислым газом воздуха, в результате которого арматура теряет защиту от коррозии","Вид коррозии кирпичной кладки","Декоративное чернение поверхности бетона"],
+        correct:1, answer:"Бетон защищает арматуру своей щелочной средой (pH>12). Карбонизация снижает pH — арматура начинает корродировать, увеличивается в объёме и разрывает бетон. В старых зданиях карбонизация нередко достигает арматуры — это критично." },
+      { id:"A2.5", level:"a", pts:1, text:"Как называется дефект бетона, при котором поверхность крошится и обнажается арматура?",
+        opts:["Высолы","Сколы и шелушение защитного слоя с обнажением арматуры (деламинация)","Кавернозность","Потёки"],
+        correct:1, answer:"Сколы с обнажением арматуры — один из наиболее опасных дефектов. Открытая арматура корродирует → ржавчина занимает объём → расслаивает бетон дальше. Требует немедленного ремонта." },
+      { id:"A2.6", level:"a", pts:1, text:"Что такое «высолы» на кирпичной стене?",
+        opts:["Плесень и грибок на поверхности кладки","Белые пятна и налёт из кристаллизованных водорастворимых солей, выступающих на поверхность при испарении влаги","Следы ржавчины от металлических закладных элементов","Потёки от протечки кровли"],
+        correct:1, answer:"Высолы — индикатор избыточного увлажнения кладки. Сами по себе косметический дефект, но свидетельствуют о нарушении гидроизоляции. Со временем это приводит к разрушению кладки." },
+      { id:"A2.7", level:"a", pts:1, text:"Трещина в бетоне шириной 0,1 мм — это:",
+        opts:["Опасная трещина, требующая немедленного вмешательства","Волосяная (усадочная) трещина, в большинстве случаев не влияющая на несущую способность, но требующая мониторинга","Трещина, требующая полного демонтажа конструкции","Технологический шов, предусмотренный проектом"],
+        correct:1, answer:"0,1 мм — предел нормы в агрессивной среде. Главное — динамика: растёт ли трещина? Именно для этого устанавливают маяки. 0,3 мм — допустимый предел для нормальных условий эксплуатации." },
+      { id:"A2.8", level:"a", pts:1, text:"Что такое «неравномерная осадка» фундамента и чем она опасна?",
+        opts:["Равномерное погружение фундамента на 1–2 см за годы — это норма","Разная величина осадки в разных частях здания, что приводит к перекосам, крену и трещинам в надземных конструкциях","Осадка только одного угла здания вследствие ошибки при строительстве","Плановое уплотнение грунта под фундаментом в первые годы"],
+        correct:1, answer:"Равномерная осадка — нормальное явление. Неравномерная — одна из главных причин трещинообразования в стенах (особенно диагональные трещины). При обследовании необходимо проверить крен здания нивелиром." },
+      { id:"A2.9", level:"a", pts:1, text:"Как визуально проявляется коррозия арматуры в железобетоне?",
+        opts:["Ржавые потёки на поверхности бетона, вздутие и откол защитного слоя","Белый налёт на поверхности бетона","Тёмные пятна от влаги на потолке","Мелкая сетка трещин на поверхности бетона"],
+        correct:0, answer:"Коррозия арматуры: (1) ржавые потёки, (2) вздутие бетона вдоль арматурных стержней, (3) сколы и отслоение защитного слоя. Продукты коррозии занимают объём в 2–3 раза больше исходного металла, разрывая бетон изнутри." },
+      { id:"A2.10", level:"a", pts:1, text:"Что такое «прогиб» балки и при каком значении он считается критическим?",
+        opts:["Вертикальное смещение центра балки под нагрузкой; критический прогиб — более 1/200 пролёта","Горизонтальное смещение балки в плане","Угол поворота опорного сечения балки","Прогиб критичен только при видимых трещинах"],
+        correct:0, answer:"Прогиб — вертикальный изгиб балки. Нормативный предельный прогиб по СП 20.13330 — как правило 1/200 пролёта. Пример: балка пролётом 6 м — допустимый прогиб до 30 мм. Превышение = потеря несущей способности." },
+      { id:"B2.1", level:"b", pts:2, text:"Заказчик присылает фото: на стене 9-этажного панельного дома диагональные трещины в углах оконных проёмов. Что это означает?",
+        warn:"ВНИМАНИЕ: ответы похожи — читайте внимательно",
+        opts:["Естественное старение здания — не требует внимания","Концентрация напряжений в углах проёмов — может быть как нормой, так и признаком нарушения несущей способности; требует оценки динамики трещин","Результат усадки цемента при строительстве — проблема устранена сама собой","Дефект монтажа оконного блока"],
+        correct:1, answer:"Диагональные трещины в углах проёмов — классическая концентрация напряжений. Единичные без роста — норма для 40-летних зданий. Но массовые с раскрытием >2 мм или прогрессирующие — признак деформации. МПП должен спросить: сколько трещин? Есть рост?" },
+      { id:"B2.2", level:"b", pts:2, text:"Чем отличается «дефект» от «повреждения» по ГОСТ 31937-2024?",
+        warn:"ВНИМАНИЕ: ответы похожи — читайте внимательно",
+        opts:["Дефект — несоответствие проекту/нормам, возникшее при строительстве; повреждение — несоответствие, возникшее в процессе эксплуатации","Дефект всегда опаснее повреждения","Дефект — только визуальные нарушения; повреждение — только структурные","Это синонимы, разница лишь в терминологии"],
+        correct:0, answer:"По ГОСТ 31937-2024: Дефект — возник при строительстве (ошибка проектирования, нарушение технологии). Повреждение — возникло при эксплуатации (износ, механическое воздействие). Различие важно для юридической ответственности и страховых случаев." },
+      { id:"B2.3", level:"b", pts:2, text:"Заказчик: «У нас течёт кровля, вода попадает на верхний этаж». Какой ответ МПП наиболее корректен?",
+        warn:"ВНИМАНИЕ: ответы похожи — читайте внимательно",
+        opts:["Это вопрос кровельщиков, мы занимаемся только конструкциями","Нужно выяснить: это протечка через покрытие, примыкания, деформационные швы или через стены? — от этого зависит, что обследовать","Надо немедленно заменить всю кровлю","Достаточно осмотра внутри помещения без выхода на кровлю"],
+        correct:1, answer:"Протечка — симптом, причин может быть много. МПП должен уточнить: где именно течёт, как давно, есть ли следы на несущих конструкциях перекрытия? Вода на конструкциях — риск коррозии арматуры. Это влияет на состав обследования." },
+      { id:"B2.4", level:"b", pts:2, text:"Что такое «визуально-инструментальное обследование» (ВИО)?",
+        warn:"ВНИМАНИЕ: ответы похожи — читайте внимательно",
+        opts:["Обследование только с помощью спецоборудования без участия инженера","Первый этап обследования: визуальный осмотр инженером с применением простых измерительных инструментов без разрушающих методов","Компьютерное 3D-сканирование здания","Только фотофиксация дефектов"],
+        correct:1, answer:"ВИО — первый и обязательный этап по ГОСТ 31937-2024. Результат: дефектная ведомость, фотофиксация, предварительная категория состояния. На основе ВИО принимается решение о необходимости детального обследования." },
+      { id:"B2.5", level:"b", pts:2, text:"Заказчик: «Трещина появилась год назад и не растёт». Что это означает для вашей оценки?",
+        warn:"ВНИМАНИЕ: ответы похожи — читайте внимательно",
+        opts:["Если не растёт — она не опасна, обследование не нужно","Стабилизированная трещина может означать конец деформации, но не исключает существенного снижения несущей способности — нужно оценить ширину, характер, глубину и причину","Не растущая трещина — признак того, что здание восстановилось само","Нужно просто заделать трещину шпаклёвкой и наблюдать"],
+        correct:1, answer:"Стабильность ≠ безопасность. Трещина 10 мм, которая «год не растёт» — это большая трещина. Факт остановки говорит о стабилизации, но достигнутое повреждение требует оценки. МПП должен предложить обследование." },
+      { id:"B2.6", level:"b", pts:2, text:"Что является характерным признаком АВАРИЙНОГО технического состояния?",
+        warn:"ВНИМАНИЕ: ответы похожи — читайте внимательно",
+        opts:["Трещины в штукатурке на поверхности стен","Незначительный прогиб перекрытия","Сквозные трещины в ЖБ балке с обнажённой арматурой, имеющей потерю металла более 25%","Ржавые потёки от закладных деталей"],
+        correct:2, answer:"По ГОСТ 31937-2024 аварийное состояние — исчерпание несущей способности, угроза обрушения. Сквозная трещина + коррозия арматуры с потерей 25% сечения — именно это. Остальные варианты требуют ремонта, но не аварийные." },
+      { id:"B2.7", level:"b", pts:2, text:"Что такое «деламинация» (расслоение) в строительных конструкциях?",
+        warn:"ВНИМАНИЕ: ответы похожи — читайте внимательно",
+        opts:["Расслоение слоёв многослойной конструкции с нарушением совместности работы элементов","Химическое разложение строительных материалов под действием воды","Разрушение поверхностного декоративного слоя","Коррозия металлических закладных деталей"],
+        correct:0, answer:"Деламинация = расслоение. В ЖБ бетон и арматура работают совместно только при надёжном сцеплении. При расслоении арматура работает сама по себе → быстрое разрушение. В кирпичной кладке снижает несущую способность стены." },
+      { id:"C2.1", level:"c", pts:5, type:"open", text:"СИТУАЦИЯ. Заказчик: «В нашем складском здании 1980-х годов (металлический каркас + кирпичное заполнение) я заметил: 1) большая диагональная трещина в кирпичном заполнении; 2) металлические колонны ржавые, одна явно искривлена; 3) кровля слегка просела в одном пролёте». Опишите: что нужно выяснить, насколько опасно и что заказчику сделать НЕМЕДЛЕННО.",
+        answer:"НЕМЕДЛЕННО: (1) Ограничить доступ персонала в данный пролёт — до заключения эксперта. (2) Вывести технику и хранящиеся грузы. ВЫЯСНИТЬ: Кривизна колонны — насколько велика? Это потеря устойчивости (потеря формы под нагрузкой = аварийное состояние). Просадка кровли — насколько мм? Деформации прогонов? Трещина — сквозная? Продолжает расти? ВЫВОД: Совокупность трёх признаков — высокая вероятность аварийного состояния пролёта. Требует немедленного обследования. До осмотра эксперта — зону не использовать." },
+      { id:"C2.2", level:"c", pts:5, type:"open", text:"РАЗВЁРНУТЫЙ ОТВЕТ. Объясните разницу между «визуальным» и «инструментальным» обследованием по ГОСТ 31937-2024: что включает каждый этап, какие инструменты используются, и когда достаточно только визуального?",
+        answer:"Визуальное: осмотр + простые измерения (рулетка, уровень, лупа, щупы для трещин). Результат — дефектная ведомость. Достаточно при: первичной оценке, небольших объектах, ТЗК по квартире, отсутствии видимых повреждений. Инструментальное: тепловизор, ультразвук, карбонизация, склерометр, нивелирование, георадар, проверка арматуры. Обязательно при: подозрении на серьёзные дефекты, реконструкции, надстройке, аварийных ситуациях, при комплексном обследовании по ГОСТ 31937-2024." },
+      { id:"C2.3", level:"c", pts:5, type:"open", text:"РАЗВЁРНУТЫЙ ОТВЕТ. Объясните концепцию «деталки» и «визуалки» — как эти термины используются в компании? В каком случае заказчик получит «только визуалку», а в каком нужна «деталка»?",
+        answer:"«Визуалка» (визуальное обследование) — осмотр инженером без разрушения конструкций, с фотофиксацией и дефектной ведомостью. Достаточна при: продаже/покупке квартиры, первичной оценке состояния. «Деталка» (детальное/инструментальное обследование) — с приборами, возможными вскрытиями, лабораторными испытаниями. Необходима при: реконструкции, надстройке, аварийных ситуациях, при наличии серьёзных дефектов по результатам визуалки. Понимание разницы = правильное КП и правильная цена." },
+    ]
+  },
+  {
+    id: 3,
+    title: "ГОСТ 31937-2024 и нормативная база",
+    desc: "4 категории техсостояния, этапы обследования, СРО, ФЗ-384, мониторинг",
+    maxA: 10, maxB: 14, maxC: 15,
+    questions: [
+      { id:"A3.1", level:"a", pts:1, text:"Как расшифровывается ГОСТ 31937-2024?",
+        opts:["«Здания и сооружения. Правила технического обслуживания»","«Здания и сооружения. Правила обследования и мониторинга технического состояния»","«Строительные конструкции. Методы испытаний и контроля»","«Здания гражданского назначения. Требования к проектированию»"],
+        correct:1, answer:"ГОСТ 31937-2024 — «Здания и сооружения. Правила обследования и мониторинга технического состояния». Основной нормативный документ нашей деятельности. Актуализированная редакция 2024 года (заменила редакцию 2011 года)." },
+      { id:"A3.2", level:"a", pts:1, text:"Согласно ГОСТ 31937-2024, сколько этапов включает полное обследование здания?",
+        opts:["Один этап — визуальный осмотр","Два этапа: визуальное и детальное (инструментальное) обследование","Три этапа: подготовка, обследование, мониторинг","Четыре этапа: инспекция, анализ, расчёт, выводы"],
+        correct:1, answer:"ГОСТ 31937-2024 предусматривает два основных этапа: 1-й — визуальное обследование; 2-й — детальное (инструментальное) обследование. При несложных объектах иногда ограничиваются первым этапом." },
+      { id:"A3.3", level:"a", pts:1, text:"Что такое СРО и почему оно важно для нашей компании?",
+        opts:["Строительное регулирующее общество — декоративная структура","Саморегулируемая организация — членство в СРО является обязательным допуском к выполнению работ по обследованию","Сертификат разрешённых операций — выдаётся на каждый объект","Государственная организация контроля качества строительства"],
+        correct:1, answer:"Членство в СРО — обязательное условие ведения деятельности по обследованию. Наша компания имеет допуск СРО (НОПРИЗ). На вопрос клиента «А у вас есть разрешение?» — МПП должен уверенно ответить: «Да, мы члены СРО, можем предоставить выписку»." },
+      { id:"A3.4", level:"a", pts:1, text:"Что такое «техническое заключение» (ТЗК)?",
+        opts:["Договор на проведение обследования","Итоговый документ обследования, содержащий описание объекта, выявленные дефекты, категорию технического состояния и рекомендации","Проект усиления конструкций","Акт приёмки выполненных работ"],
+        correct:1, answer:"ТЗК — итоговый «продукт», который заказчик получает от нас. Содержит: общие сведения об объекте, нормативную базу, методику, результаты обследования, дефектную ведомость, выводы с категорией состояния, рекомендации." },
+      { id:"A3.5", level:"a", pts:1, text:"Что устанавливает ФЗ №384 «Технический регламент о безопасности зданий»?",
+        opts:["Закон, регулирующий только жилищное строительство","ФЗ, устанавливающий минимальные требования к безопасности зданий в течение всего жизненного цикла, включая требования к механической безопасности конструкций","Нормативный акт, регулирующий цены на строительство","Закон об экспертизе только промышленных объектов"],
+        correct:1, answer:"ФЗ-384 устанавливает базовые требования безопасности для ВСЕХ зданий. Согласно ему, собственник обязан обеспечивать безопасность конструкций. Это юридическая основа, почему заказчику «надо» делать обследование." },
+      { id:"A3.6", level:"a", pts:1, text:"С какой периодичностью ГОСТ 31937-2024 рекомендует проводить плановые обследования зданий?",
+        opts:["Каждые 50 лет","Каждые 10 лет для обычных зданий (и раньше — при признаках повреждений)","Только при очевидных разрушениях","Ежегодно для всех типов зданий"],
+        correct:1, answer:"ГОСТ 31937-2024: первое обследование через 2 года после ввода, затем — не реже раза в 10 лет. При признаках повреждений или после стихийных бедствий — немедленно. Аргумент для клиентов со старым советским зданием." },
+      { id:"A3.7", level:"a", pts:1, text:"Что такое «дефектная ведомость» в составе технического заключения?",
+        opts:["Список всех строительных материалов, применённых при строительстве","Перечень выявленных дефектов с указанием местоположения, характера, размеров и фотофиксацией","Смета на устранение дефектов","Журнал работ при строительстве"],
+        correct:1, answer:"Дефектная ведомость — таблица: наименование дефекта, место нахождения, характеристики, фото. Это основа ТЗК. МПП должен знать: клиент часто путает «дефектную ведомость» с «дефектной сметой» — это разные документы." },
+      { id:"A3.8", level:"a", pts:1, text:"Что означает аббревиатура «СП» в строительстве?",
+        opts:["Специальный паспорт объекта","Свод правил — нормативный документ, устанавливающий правила проектирования и строительства (аналог бывших СНиП)","Сметный подрядчик","Санитарный паспорт здания"],
+        correct:1, answer:"СП — Свод правил, современная форма нормативно-технических документов. Заменил советские СНиП после их актуализации. Примеры: СП 20.13330 — нагрузки, СП 70.13330 — конструкции." },
+      { id:"A3.9", level:"a", pts:1, text:"Что такое «техническое освидетельствование» и чем оно отличается от «обследования»?",
+        opts:["Это синонимы","Техосвидетельствование — периодическая проверка объектов Ростехнадзора (котлы, сосуды, ПС); обследование зданий по ГОСТ 31937-2024 — самостоятельный вид работ для строительных конструкций","Обследование — более поверхностная процедура","Техосвидетельствование — ежегодно, обследование — раз в 10 лет"],
+        correct:1, answer:"Важное разграничение: «Техосвидетельствование» — термин Ростехнадзора, для опасных производственных объектов (котлы, сосуды, подъёмные сооружения). «Обследование зданий» — по ГОСТ 31937-2024, для строительных конструкций. Путать нельзя." },
+      { id:"A3.10", level:"a", pts:1, text:"Что такое «поверка измерительных приборов» и зачем она нужна при обследовании?",
+        opts:["Техническое обслуживание для продления срока эксплуатации","Метрологическое подтверждение точности средств измерения, без которого результаты измерений не имеют юридической силы","Ежегодный осмотр приборов без измерений","Обучение инженера работе с приборами"],
+        correct:1, answer:"Поверка — метрологическая процедура подтверждения точности прибора. Результаты обследования с неповеренными приборами — недействительны с точки зрения закона. Поэтому в наших ТЗК всегда прикладываются свидетельства о поверке." },
+      { id:"B3.1", level:"b", pts:2, text:"В КП написано «Комплексное обследование по ГОСТ 31937-2024», но откопка шурфов НЕ указана. На что должен обратить внимание МПП?",
+        warn:"ВНИМАНИЕ: ответы похожи — читайте внимательно",
+        opts:["Это нормально — шурфы не всегда нужны","Необходимо уточнить у руководителя: по ГОСТ 31937-2024 при комплексном обследовании откопка шурфов для осмотра фундаментов, как правило, обязательна — если исключены, нужно либо включить, либо обосновать исключение","Шурфы — лишние расходы, всегда можно исключить","Шурфы относятся только к геологии, а не к обследованию конструкций"],
+        correct:1, answer:"По ГОСТ 31937-2024 для оценки фундаментов при комплексном обследовании откопка шурфов — стандартная необходимость. Исключение допустимо только при обоснованной причине. МПП должен уточнить, чтобы не получился неполный продукт." },
+      { id:"B3.2", level:"b", pts:2, text:"Заказчик просит: «Сделайте нам обследование, но без выезда — только по документам». Что должен ответить МПП?",
+        warn:"ВНИМАНИЕ: ответы похожи — читайте внимательно",
+        opts:["Конечно, можем — пришлите документы","По ГОСТ 31937-2024 обследование включает обязательный выезд на объект; без осмотра это «анализ документации» — другой продукт с иными ограничениями по выводам","Нет, без выезда мы ничего не делаем","Да, если здание построено после 2010 года"],
+        correct:1, answer:"Обследование по определению требует натурного осмотра. «Анализ документации» — другая услуга с ограниченными выводами. Важно: предложить альтернативный продукт с объяснением его ограничений, а не просто отказать." },
+      { id:"B3.3", level:"b", pts:2, text:"Что такое «мониторинг технического состояния» по ГОСТ 31937-2024?",
+        warn:"ВНИМАНИЕ: ответы похожи — читайте внимательно",
+        opts:["Периодическое плановое обследование здания раз в 10 лет","Систематическое наблюдение за изменениями параметров конструкций во времени для оценки динамики процессов","Единовременная фотофиксация здания","Видеонаблюдение за зданием с камер"],
+        correct:1, answer:"Мониторинг — процесс во времени (в отличие от разового обследования). Применяется при: аварийном или ограниченно работоспособном состоянии (обязателен), при стройке вблизи здания. Дороже разового обследования, но даёт картину динамики." },
+      { id:"B3.4", level:"b", pts:2, text:"Что такое «техническое задание» (ТЗ) на обследование?",
+        warn:"ВНИМАНИЕ: ответы похожи — читайте внимательно",
+        opts:["Список оборудования для обследования","Документ, составленный совместно заказчиком и исполнителем, определяющий цели, объём и состав работ по обследованию","Типовая форма договора на обследование","Нормативный документ Ростехнадзора"],
+        correct:1, answer:"ТЗ — основа договора. В нём: цели обследования, объект, состав работ, форма результата. МПП участвует в его формировании: правильно составленное ТЗ защищает компанию от ситуации «нам было нужно другое»." },
+      { id:"B3.5", level:"b", pts:2, text:"Чем «обследование» отличается от «строительно-технической экспертизы» (СТЭ)?",
+        warn:"ВНИМАНИЕ: ответы похожи — читайте внимательно",
+        opts:["Это одно и то же, просто разные названия","Обследование — инженерное исследование для определения техсостояния; СТЭ — вид судебной или досудебной экспертизы с процессуальным статусом; результат СТЭ имеет доказательную силу в суде","Обследование — только для жилых зданий, СТЭ — только для промышленных","СТЭ — более дешёвый аналог обследования"],
+        correct:1, answer:"Ключевое различие — правовой статус. Обследование даёт инженерный результат (ТЗК). СТЭ — это юридически значимый документ с подписью судебного эксперта. Если заказчику нужен документ для суда — нужна СТЭ." },
+      { id:"B3.6", level:"b", pts:2, text:"Что такое «исполнительная документация» и почему её отсутствие усложняет обследование?",
+        warn:"ВНИМАНИЕ: ответы похожи — читайте внимательно",
+        opts:["Договор на выполнение работ","Комплект документов, фиксирующих фактическое выполнение строительных работ (акты на скрытые работы, журналы бетонирования и т.д.); её отсутствие означает, что инженер вынужден применять дополнительные методы для установления фактических параметров конструкций","Рабочая документация, по которой строилось здание","Паспорт здания из БТИ"],
+        correct:1, answer:"Исполнительная документация — доказательства, что здание построено правильно. Её отсутствие = нет данных о реальном армировании, прочности бетона, глубине фундамента. Это удорожает обследование: нужны вскрытия, испытания. МПП должен учитывать это при КП." },
+      { id:"B3.7", level:"b", pts:2, text:"При каком условии МПП должен настаивать на расширении состава работ (от визуального до инструментального), даже если заказчик говорит, что ему достаточно визуального?",
+        warn:"ВНИМАНИЕ: ответы похожи — читайте внимательно",
+        opts:["Никогда — заказчик всегда прав","Если цель заказчика подразумевает задачи, которые не могут быть решены только визуальным осмотром — например, для поверочного расчёта при надстройке нужны данные о фактической прочности бетона","Только при очевидных трещинах","Если объект старше 30 лет"],
+        correct:1, answer:"МПП должен понимать: продавать «меньше, чем нужно» — не в интересах компании и клиента. Если задача требует поверочного расчёта, без данных о прочности бетона расчёт невозможен. Клиент получит неполноценный продукт и вернётся с претензиями." },
+      { id:"C3.1", level:"c", pts:5, type:"open", text:"РАЗВЁРНУТЫЙ ОТВЕТ. В КП «комплексное обследование по ГОСТ 31937-2024» нет: откопки шурфов, испытаний бетона склерометром, нивелирования здания. Как МПП должен объяснить заказчику необходимость каждой из трёх позиций — простым языком?",
+        answer:"1) Шурфы у фундамента: «Мы должны убедиться, что фундамент в порядке. Это невозможно без вскрытия грунта рядом с ним — нам нужно своими глазами увидеть глубину, нет ли трещин и гидроизоляции. Без этого нельзя дать полное заключение об основании». 2) Испытания бетона: «Нам нужно знать, насколько прочный бетон в ваших колоннах. Мы проверяем это прибором — склерометром или ультразвуком — без разрушения конструкции. Без этих данных мы не сможем рассчитать, выдержит ли здание дополнительную нагрузку». 3) Нивелирование: «Это измерение уровней полов по всему зданию — показывает, есть ли крен или неравномерная осадка. Небольшой крен может быть незаметен глазу, но прибор его покажет — важный показатель состояния фундамента»." },
+      { id:"C3.2", level:"c", pts:5, type:"open", text:"РАЗВЁРНУТЫЙ ОТВЕТ. Что такое «экспертиза промышленной безопасности» (ЭПБ)? Кто заказывает, кто проводит, какой документ выдаётся, и чем ЭПБ отличается от технического заключения по ГОСТ 31937-2024?",
+        answer:"ЭПБ регулируется ФЗ-116 «О промышленной безопасности ОПО» и Ростехнадзором. Объекты: опасные производственные объекты — резервуары, трубопроводы, здания на ОПО, подъёмные сооружения. Кто заказывает: организации, эксплуатирующие ОПО. Кто проводит: организации, аккредитованные Ростехнадзором. Документ: «Заключение ЭПБ», которое регистрируется в реестре Ростехнадзора. Отличие от ТЗК: ТЗК — по ГОСТ 31937-2024, для любых зданий, без регистрации. ЭПБ — только для ОПО, с регистрацией в РТН, юридически обязательна для продолжения эксплуатации ОПО." },
+      { id:"C3.3", level:"c", pts:5, type:"open", text:"РАЗВЁРНУТЫЙ ОТВЕТ. Объясните, что такое «экспертиза квартиры». Когда заказчик её заказывает, что в неё входит, и в чём отличие от обследования квартиры по ГОСТ 31937-2024? Приведите пример нашего реального заключения.",
+        answer:"Экспертиза квартиры = строительно-техническое заключение (ТЗК) по результатам обследования квартиры. Когда заказывают: (1) перед покупкой; (2) после затопления; (3) при перепланировке (несущая ли стена?); (4) при конфликте с застройщиком; (5) для суда. Состав (как в нашем ТЗК №250/31/05/25 по Коробейникову пер.): осмотр водоснабжения, канализации, отопления, электрики, вентиляции; выявление дефектов; оценка физического износа по ВСН 53-86(р); рекомендации. Отличие: юридически «экспертиза» — документ судебного эксперта. Наш ТЗК — инженерное заключение, для досудебного урегулирования часто достаточно." },
+    ]
+  },
+  {
+    id: 4,
+    title: "Виды экспертиз и наши услуги",
+    desc: "Продуктовая линейка, ЭПБ, технадзор, приёмка квартир, физический износ",
+    maxA: 10, maxB: 14, maxC: 15,
+    questions: [
+      { id:"A4.1", level:"a", pts:1, text:"Что такое «ЭПБ» и где применяется?",
+        opts:["Эксплуатационный паспорт безопасности — для жилых домов","Экспертиза промышленной безопасности — проводится на опасных производственных объектах по ФЗ-116, результат регистрируется в Ростехнадзоре","Экологическая проверка безопасности промышленных предприятий","Энергетический паспорт безопасности здания"],
+        correct:1, answer:"ЭПБ — обязательная процедура для объектов ОПО. Клиент-промышленник скажет: «нам нужна ЭПБ» — МПП должен знать, что это и есть ли у нас соответствующая аккредитация РТН." },
+      { id:"A4.2", level:"a", pts:1, text:"Чем «техническое обследование» отличается от «технического надзора» (технадзора)?",
+        opts:["Это одно и то же","Обследование — оценка существующего состояния конструкций; технадзор — контроль за правильностью ведения строительных работ в процессе их выполнения","Обследование только для жилья, технадзор — для промышленности","Технадзор — государственная функция, обследование — коммерческая"],
+        correct:1, answer:"Ключевое различие: обследование = прошлое (что уже есть/случилось). Технадзор = настоящее (контроль того, что делается сейчас). Это два разных продукта. Часто заказывают вместе: обследование перед ремонтом + технадзор в процессе." },
+      { id:"A4.3", level:"a", pts:1, text:"Что такое «строительная экспертиза» в рамках судебного разбирательства?",
+        opts:["Обычное техническое заключение","Внесудебная оценка стоимости строительных работ","Экспертиза, назначаемая судом, результат которой является доказательством в суде; эксперт несёт уголовную ответственность за заведомо ложное заключение","Проверка строительной компании надзорными органами"],
+        correct:2, answer:"Судебная СТЭ — юридически особая процедура. Эксперт предупреждается об уголовной ответственности, его заключение = доказательство в деле. МПП должен уметь объяснить разницу клиенту, который «хочет заключение для суда»." },
+      { id:"A4.4", level:"a", pts:1, text:"Что входит в типичное обследование квартиры (как в ТЗК по Коробейникову пер., д.1)?",
+        opts:["Только осмотр несущих стен","Визуально-инструментальное обследование инженерных систем: водоснабжение, канализация, отопление, электроснабжение, вентиляция — с оценкой техсостояния, физического износа и рекомендациями","Только геологические изыскания грунта под домом","Только обследование кровли многоквартирного дома"],
+        correct:1, answer:"Как в нашем ТЗК №250 по Коробейникову пер.: обследование охватывает все 5 систем. По каждой — категория состояния по ГОСТ 31937-2024 и физический износ по ВСН 53-86(р). Итог — общие выводы и рекомендации." },
+      { id:"A4.5", level:"a", pts:1, text:"Что такое физический износ по ВСН 53-86(р)?",
+        opts:["Моральное устаревание здания","Степень потери технических свойств конструкций и инженерных систем в результате эксплуатации, выражаемая в процентах","Стоимость здания с учётом амортизации","Норма времени на проведение обследования"],
+        correct:1, answer:"Физический износ — процент деградации от первоначального состояния. В ТЗК по квартире: водоснабжение — 10%, канализация — 5%, теплоснабжение — 50%. Клиент понимает: 50% = пора менять систему." },
+      { id:"A4.6", level:"a", pts:1, text:"Что проверяют при обследовании кровли?",
+        opts:["Только декоративное покрытие","Состояние кровельного покрытия, водосточной системы, примыканий, несущих конструкций стропил/ферм, теплоизоляции, гидроизоляции и наличие протечек","Только наличие снега на кровле","Только угол наклона кровли"],
+        correct:1, answer:"Обследование кровли — комплексная работа. Ключевые вопросы: где течёт? (место протечки ≠ место дефекта — вода течёт наклонно). Есть ли деформации несущей конструкции?" },
+      { id:"A4.7", level:"a", pts:1, text:"Какую документацию заказчик должен предоставить для качественного обследования?",
+        opts:["Только договор аренды","Проектную документацию, исполнительную документацию, результаты предыдущих обследований, документы БТИ","Только кадастровый паспорт","Документы не нужны — инженер всё определит на месте"],
+        correct:1, answer:"Полный пакет документов ускоряет и удешевляет обследование. МПП при первом контакте должен сразу запросить список документов. Если документов нет — объём работы возрастёт (нужны обмерные работы, вскрытия, испытания)." },
+      { id:"A4.8", level:"a", pts:1, text:"Что такое «акт об обнаруженных дефектах» при сдаче квартиры от застройщика?",
+        opts:["То же самое, что техническое заключение по ГОСТ 31937-2024","Документ, составляемый при приёмке квартиры в новостройке, фиксирующий несоответствия и дефекты, которые застройщик обязан устранить по гарантии","Официальное заключение о признании дома аварийным","Штрафной документ для подрядчика"],
+        correct:1, answer:"Это популярная услуга — «приёмка квартиры у застройщика». Физическое лицо нанимает нашего инженера, чтобы зафиксировать все дефекты ДО подписания акта приёмки. Застройщик обязан устранить их по гарантии (214-ФЗ)." },
+      { id:"A4.9", level:"a", pts:1, text:"Что такое «независимая строительная экспертиза»?",
+        opts:["Государственная проверка объекта","Коммерческая инженерная услуга, при которой независимый эксперт объективно оценивает состояние конструкций или качество работ — без заинтересованности ни в пользу заказчика, ни подрядчика","Обязательная государственная экспертиза проектной документации","Внутренняя проверка строительной компании"],
+        correct:1, answer:"«Независимая» = эксперт не связан ни с застройщиком, ни с подрядчиком. Это ключевое конкурентное преимущество, которое МПП должен подчёркивать. Клиент платит за независимость оценки." },
+      { id:"A4.10", level:"a", pts:1, text:"Что такое «дефектная смета» и отличается ли она от «дефектной ведомости»?",
+        opts:["Это одно и то же","Дефектная ведомость — перечень дефектов (результат обследования); дефектная смета — расчёт стоимости ремонтных работ для устранения дефектов (делается отдельно сметчиком)","Дефектная смета — предварительный список, ведомость — окончательный","Дефектная ведомость — внутренний документ, смета — для клиента"],
+        correct:1, answer:"МПП часто путают. Мы делаем дефектную ведомость (что не так). Дефектную смету (сколько стоит починить) делает сметчик на основе нашей ведомости. Клиент просит «ведомость со стоимостью» — нужно разъяснить, что это два отдельных документа." },
+      { id:"B4.1", level:"b", pts:2, text:"Заказчик: «Нам нужна экспертиза — у нас конфликт с соседом, он говорит, что наш ремонт повредил его стены». Как квалифицировать запрос и что предложить?",
+        warn:"ВНИМАНИЕ: ответы похожи — читайте внимательно",
+        opts:["Это не наш вопрос — пусть обратятся к юристу","Предложить строительно-техническое заключение: инженер осматривает стены у соседа, фиксирует дефекты, устанавливает возможную причину; для досудебного — ТЗК достаточно; для суда — потребуется судебная экспертиза","Это работа для оценщика недвижимости","Нужно обследовать всё здание целиком"],
+        correct:1, answer:"Типичный запрос «соседский спор». МПП должен квалифицировать: нужна фиксация дефектов + установление причины + вывод о причинно-следственной связи. ТЗК для досудебного = наш продукт. Для суда — нужен судебный эксперт." },
+      { id:"B4.2", level:"b", pts:2, text:"Что такое «акт о затоплении» и как он связан с нашей услугой?",
+        warn:"ВНИМАНИЕ: ответы похожи — читайте внимательно",
+        opts:["Это официальный документ управляющей компании, фиксирующий факт затопления; наша услуга дополняет его: независимая оценка ущерба и повреждений конструкций для взыскания средств","Акт о затоплении — наш основной продукт для страховых компаний","Это одно и то же — акт о затоплении мы и составляем","Наша услуга никак не связана с затоплениями"],
+        correct:0, answer:"При затоплении: акт УК фиксирует факт, но не детализирует ущерб. Наш ТЗК детально описывает повреждения и причины. Это важно для страховых выплат или судебного взыскания с виновника." },
+      { id:"B4.3", level:"b", pts:2, text:"Заказчик: «Сколько стоит обследование 5000 м² производственного здания?». Какой первый ответ должен дать МПП?",
+        warn:"ВНИМАНИЕ: ответы похожи — читайте внимательно",
+        opts:["Назвать цену по прайсу","Сообщить, что стоимость зависит от цели обследования, конструктивной схемы, наличия документации и объёма инструментальных работ; предложить ответить на 2–3 уточняющих вопроса для подготовки КП","Отказаться отвечать до встречи с инженером","Попросить прислать фотографии"],
+        correct:1, answer:"Цена «5000 м²» — не ответ без понимания состава работ. МПП должен уточнить: цель, тип конструкций, документация — затем передать инженеру для КП. Клиенту нужно объяснить, почему нельзя назвать цену сразу." },
+      { id:"B4.4", level:"b", pts:2, text:"В чём разница между «техническим заключением» и «проектом усиления»?",
+        warn:"ВНИМАНИЕ: ответы похожи — читайте внимательно",
+        opts:["Это одно и то же","ТЗК — фиксирует текущее состояние и даёт рекомендации; проект усиления — конструкторский документ с конкретными техническими решениями (чертежи, расчёты), разрабатываемый на основании ТЗК","Проект усиления — более дешёвый документ","ТЗК — для суда, проект усиления — для строительства"],
+        correct:1, answer:"ТЗК говорит «что не так и что нужно сделать». Проект усиления = «как именно это сделать» (конструктивное решение, чертежи). Клиент покупает ТЗК → получает рекомендацию усилить балку → заказывает у нас проект усиления. Это upsell." },
+      { id:"B4.5", level:"b", pts:2, text:"Что такое «мониторинг осадок» и когда он нужен?",
+        warn:"ВНИМАНИЕ: ответы похожи — читайте внимательно",
+        opts:["Наблюдение за погодой вблизи объекта","Систематическое геодезическое наблюдение за вертикальными перемещениями (осадками) фундаментов с помощью нивелирования; необходимо при строительстве рядом, при слабых грунтах, при ограниченно работоспособном состоянии","Ежемесячный визуальный осмотр здания","Контроль за расходом воды в системе водоснабжения"],
+        correct:1, answer:"Мониторинг осадок важен для девелопера, рядом с чьим объектом строят новое здание — котлован может вызвать осадку существующей постройки. Мониторинг документирует изменения — при превышении нормы сигнал тревоги." },
+      { id:"B4.6", level:"b", pts:2, text:"Что такое «поверочный расчёт» несущей конструкции?",
+        warn:"ВНИМАНИЕ: ответы похожи — читайте внимательно",
+        opts:["Проверка правильности прошлых расчётов проектировщиком","Расчёт фактической несущей способности конструкции с учётом её реального состояния — сечения, прочности материалов, дефектов; выполняется на основе данных обследования","Расчёт стоимости ремонта конструкции","Проверка проектных нагрузок"],
+        correct:1, answer:"Поверочный расчёт = инженерный расчёт «по факту». Пример: балка с трещиной — сколько она реально несёт? Для надстройки обязателен: нужно доказать, что существующие конструкции выдержат новые этажи." },
+      { id:"B4.7", level:"b", pts:2, text:"Заказчик: «Нам нужна экспертиза здания, но мы не хотим платить лишнего — нам нужно просто подтверждение, что здание нормальное». Как ответить?",
+        warn:"ВНИМАНИЕ: ответы похожи — читайте внимательно",
+        opts:["Предложить самый дешёвый вариант без выезда","Объяснить, что минимальный продукт — это ТЗК после визуального обследования; «подтверждение» = наш вывод о категории технического состояния; если состояние нормативное — так и напишем","Согласиться подготовить письмо без осмотра","Отказаться — мы не выдаём документы без детального обследования"],
+        correct:1, answer:"МПП должен управлять ожиданиями: «мы не можем написать, что всё хорошо, не посмотрев. Но если действительно всё в норме — так и напишем в ТЗК». Нельзя обещать заранее хорошего результата — это нарушение этики." },
+      { id:"C4.1", level:"c", pts:5, type:"open", text:"РАЗВЁРНУТЫЙ ОТВЕТ. Перечислите и опишите не менее 7 видов услуг/продуктов нашей компании. Для каждого укажите: кто типичный заказчик, в чём результат (документ), и примерный повод для обращения.",
+        answer:"1. Комплексное обследование здания (ТЗК): инвесторы, девелоперы → перед реконструкцией. 2. Обследование квартиры: частные лица → перед покупкой, после ремонта, при спорах. 3. Приёмка квартиры от застройщика: дольщики → фиксация дефектов. 4. Обследование после затопления: пострадавшие → для страховой/суда. 5. Технадзор за ремонтом: частные лица, компании → контроль подрядчика. 6. ЭПБ зданий ОПО: промышленные предприятия → обязательно по ФЗ-116. 7. Мониторинг осадок: девелоперы рядом со стройкой. 8. СТЭ для суда: юридические конфликты. 9. Проект усиления/реконструкции." },
+      { id:"C4.2", level:"c", pts:5, type:"open", text:"РАЗВЁРНУТЫЙ ОТВЕТ. Объясните концепцию «жизненного цикла здания» и как она связана с нашими услугами. На каких этапах мы можем предложить свои услуги?",
+        answer:"Жизненный цикл: Проектирование → Строительство → Эксплуатация → Реконструкция → Снос. Строительство: технадзор, приёмка квартиры у застройщика. Эксплуатация: плановое обследование (раз в 10 лет), мониторинг, обследование после ЧС. Реконструкция/надстройка: комплексное обследование, поверочный расчёт, ЭПБ, проект усиления. Продажа/покупка: обследование перед сделкой. Снос или аварийное: обследование для признания аварийным." },
+      { id:"C4.3", level:"c", pts:5, type:"open", text:"РАЗВЁРНУТЫЙ ОТВЕТ. Назовите минимум 5 ключевых конкурентных преимуществ нашей компании и объясните каждое клиентским языком (как вы бы сказали заказчику).",
+        answer:"1. Членство в СРО: «Мы работаем официально, с допуском СРО — ваш документ будет иметь юридическую силу». 2. Поверенные приборы: «Наши измерения выполнены поверенными приборами — результаты нельзя оспорить». 3. Опытные эксперты: «Руководитель группы — инженер с 15-летним стажем, эксперт с 2009 года». 4. Независимость: «Мы не аффилированы ни с каким подрядчиком — наша оценка объективна». 5. Полный цикл услуг: «Мы не только выявим проблему, но и поможем её устранить — проект усиления, технадзор»." },
+    ]
+  },
+  {
+    id: 5,
+    title: "Навыки работы с заказчиком",
+    desc: "Квалификация запроса, переговоры, возражения, питч ценности услуги",
+    maxA: 10, maxB: 14, maxC: 15,
+    questions: [
+      { id:"A5.1", level:"a", pts:1, text:"Заказчик: «Мне нужно просто заключение, чтобы сдать в Жилинспекцию». Что должен уточнить МПП первым делом?",
+        opts:["Стоимость услуги","Точную цель: узаконить перепланировку, получить разрешение на строительство или подтвердить состояние при аварийной ситуации — это определяет вид и состав документа","Адрес объекта","Площадь квартиры"],
+        correct:1, answer:"«Заключение для Жилинспекции» может означать разное. МПП должен понять цель, прежде чем говорить о продукте и цене. Разные цели = разные документы = разная стоимость." },
+      { id:"A5.2", level:"a", pts:1, text:"Клиент после первого звонка говорит «подумаю и перезвоню». Какое действие МПП должен предпринять?",
+        opts:["Ждать звонка","Предложить выслать КП по email/WhatsApp: «Давайте пришлю коммерческое предложение, чтобы у вас был конкретный документ — это ни к чему вас не обязывает»","Позвонить через 1 час","Снизить цену на 20%"],
+        correct:1, answer:"КП в письменном виде — ключевой инструмент конвертации лида. Клиент, получивший КП, с большей вероятностью вернётся. Без КП — «подумает» и забудет. МПП должен получить контакт для отправки." },
+      { id:"A5.3", level:"a", pts:1, text:"Что МПП должен сделать ПЕРЕД тем, как передать запрос руководителю отдела обследования для КП?",
+        opts:["Ничего — просто переслать запрос","Собрать базовую информацию: адрес, тип и год постройки, площадь, цель обследования, наличие документации, сроки. Без этого РОО не сможет составить точное КП","Попросить клиента самому заполнить анкету","Запросить проектную документацию от клиента"],
+        correct:1, answer:"МПП — «фильтр», который собирает минимально необходимую информацию. Если передать «нам нужно обследование» без деталей — РОО составит некорректное КП. 5 вопросов МПП = экономия часа работы инженера." },
+      { id:"A5.4", level:"a", pts:1, text:"Клиент возражает: «У вас дорого, другая компания предложила вдвое дешевле». Какой ответ наиболее эффективен?",
+        opts:["Снизить цену сразу","Уточнить, что именно входит у конкурента: «Давайте сравним состав. Часто более низкая цена означает меньший объём или отсутствие поверенных приборов, что влияет на юридическую силу документа»","Сказать, что конкуренты плохие","Прекратить переговоры"],
+        correct:1, answer:"Возражение по цене лучше снимается сравнением состава, а не снижением цены. Часто конкуренты предлагают неполный объём (нет шурфов, приборных измерений, поверки). МПП должен уметь объяснить ценность нашего продукта." },
+      { id:"A5.5", level:"a", pts:1, text:"Что значит «горячий» и «холодный» лид для МПП в нашей сфере?",
+        opts:["Горячий — юридическое лицо, холодный — физическое","Горячий — клиент с конкретной сформированной потребностью; холодный — потенциальный клиент, у которого потребность не сформирована","Горячий — срочный заказ, холодный — несрочный","Горячий — физлицо, холодный — компания"],
+        correct:1, answer:"Работа с горячим и холодным лидом — разная. Горячий: задать правильные вопросы и не упустить. Холодный: объяснить ценность услуги, сформировать потребность." },
+      { id:"A5.6", level:"a", pts:1, text:"Что такое «КП» (коммерческое предложение) в нашей работе?",
+        opts:["Контрольный паспорт здания","Документ, в котором описан состав работ, их цель, сроки и стоимость — основа для принятия решения заказчиком и формирования договора","Краткое письмо с ценой","Коммерческая политика компании"],
+        correct:1, answer:"КП — не просто письмо с ценой. Хорошее КП включает: описание объекта, состав работ, результат (что получит клиент), сроки, стоимость, наши реквизиты/СРО. МПП влияет на качество КП через качество переданной информации." },
+      { id:"A5.7", level:"a", pts:1, text:"Клиент пишет: «У нас здание 1970-х, хотим надстроить 2 этажа, нужен документ». Какой вопрос МПП должен задать первым?",
+        opts:["Какой у вас бюджет?","Это для разрешительной документации или внутреннего решения? — от этого зависит, нужно ли комплексное обследование с поверочным расчётом или достаточно предварительной оценки","Сколько этажей в здании сейчас?","Когда вам нужен результат?"],
+        correct:1, answer:"Надстройка — серьёзная задача. Для неё нужно знать: несут ли существующие конструкции дополнительную нагрузку? Это решается только через поверочный расчёт. Если клиент хочет разрешение — потребуется комплексное обследование + проект." },
+      { id:"A5.8", level:"a", pts:1, text:"Клиент: «А вы даёте гарантию на результат обследования?» Что ответить?",
+        opts:["Да, гарантируем, что результат будет положительным","Мы гарантируем качество проведения работ, квалификацию специалистов и соответствие ГОСТ 31937-2024. Результат (категория состояния) — объективный вывод на основе фактических данных, мы не можем его заранее определить","Нет, гарантий не даём","Гарантируем, что найдём все дефекты"],
+        correct:1, answer:"Заказчик иногда хочет «заключение, что всё хорошо» заранее. Это недопустимо — мы не знаем результат до осмотра. Но мы гарантируем профессионализм и методологию. Если всё в порядке — так и напишем." },
+      { id:"A5.9", level:"a", pts:1, text:"В каком случае МПП может самостоятельно назвать ориентировочную стоимость, не дожидаясь КП от РОО?",
+        opts:["Всегда — МПП обязан знать все цены","При стандартных типовых запросах (квартира до 100 м²), для которых есть фиксированный прайс; в остальных случаях — дать диапазон «от...» с пометкой «точная цена — после КП инженера»","Никогда — только РОО называет цены","Только для физических лиц"],
+        correct:1, answer:"МПП должен знать базовый прайс для типовых услуг — это ускоряет конверсию. Но для нестандартных объектов называть цену наугад опасно: или завысим (потеряем клиента), или занизим (потеряем деньги)." },
+      { id:"A5.10", level:"a", pts:1, text:"Клиент говорит: «Нам нужно обследование за 3 дня». Как ответить?",
+        opts:["Извиниться и отказать","Уточнить объект и объём, затем согласовать с инженером: при срочности применяется коэффициент к стоимости (+30–50%). Сроки зависят от объёма, а не только от желания","Пообещать 3 дня без согласования с инженером","Предложить только фотоотчёт без выводов"],
+        correct:1, answer:"Срочность — коммерческая возможность, не причина для отказа. МПП должен: уточнить объём → согласовать с инженером → предложить срочный вариант с надбавкой. Самостоятельно обещать сроки без согласования — рискованно." },
+      { id:"B5.1", level:"b", pts:2, text:"Заказчик сказал «нам нужно комплексное обследование», но при уточнении выясняется, что он хочет «просто узнать, можно ли снести стену». Что предложить?",
+        warn:"ВНИМАНИЕ: ответы похожи — читайте внимательно",
+        opts:["Комплексное обследование всего здания, как и просил","Для перепланировки одного помещения, как правило, достаточно ТЗК о состоянии затрагиваемых конструкций (несущая ли стена?) — это меньший объём и меньшая стоимость, чем полное комплексное обследование","Отказать — мы не занимаемся перепланировками","Попросить подождать, пока оформится разрешение"],
+        correct:1, answer:"МПП должен «декодировать» запрос. Клиент говорит термины, которые слышал, а не то, что нужно. Предложить правильный продукт по реальной потребности = профессиональный МПП." },
+      { id:"B5.2", level:"b", pts:2, text:"Клиент звонит после получения ТЗК: «В вашем заключении написано "ограниченно работоспособное" — что это значит?». Как ответить простым языком?",
+        warn:"ВНИМАНИЕ: ответы похожи — читайте внимательно",
+        opts:["«Это значит, что здание скоро рухнет»","«Здание стоит и работает, но в нём есть дефекты, снижающие надёжность. Оно пока не опасно, но без ремонта эксплуатировать нельзя — нужно либо устранить дефекты, либо организовать мониторинг. Мы можем помочь с проектом усиления»","«Это самая плохая категория, нужен снос»","«Всё в порядке, просто формальность»"],
+        correct:1, answer:"МПП должен переводить технический язык на понятный клиенту. «Ограниченно работоспособное» — не аварийное (не рухнет завтра), но требует действий. Важно: дать конкретные следующие шаги — это возможность для upsell." },
+      { id:"B5.3", level:"b", pts:2, text:"Заказчик — управляющая компания — говорит: «У нас 15 домов, хотим проводить плановые обследования». Как МПП должен структурировать переговоры?",
+        warn:"ВНИМАНИЕ: ответы похожи — читайте внимательно",
+        opts:["Назвать цену за один дом и умножить на 15","Предложить программу: обсудить приоритет (какие дома старше/проблемнее), рамочный договор со скидкой на объём, этапность, запросить техническую характеристику домов для КП","Попросить оплатить всё сразу","Начать с самого маленького дома"],
+        correct:1, answer:"УК с 15 домами — крупный клиент. МПП должен работать стратегически: рамочный договор фиксирует отношения, скидка за объём стимулирует лояльность, этапность удобна для бюджетирования. Это не разовая продажа, а партнёрство." },
+      { id:"B5.4", level:"b", pts:2, text:"Что означает «правильно квалифицировать запрос заказчика» и почему это ключевой навык МПП?",
+        warn:"ВНИМАНИЕ: ответы похожи — читайте внимательно",
+        opts:["Убедиться, что клиент является юридическим лицом","Понять реальную потребность клиента (зачем нужен документ, какая конечная задача), что позволяет предложить правильный продукт — ни больше, ни меньше","Проверить платёжеспособность клиента","Записать все данные в CRM"],
+        correct:1, answer:"«Квалифицировать запрос» — самый важный навык МПП в технической сфере. Клиент говорит одно, а имеет в виду другое. МПП, не выяснивший цель, передаст инженеру неверное ТЗ — результат не соответствует ожиданиям." },
+      { id:"B5.5", level:"b", pts:2, text:"Клиент — частное лицо: «Хочу купить квартиру в старом фонде, хочу проверить её». Что предложить и что уточнить?",
+        warn:"ВНИМАНИЕ: ответы похожи — читайте внимательно",
+        opts:["Комплексное обследование всего здания","Обследование квартиры (ТЗК): осмотр конструктивных элементов и инженерных систем с оценкой физического износа; уточнить: год постройки, тип дома, площадь квартиры, срочность","Экспертизу промышленной безопасности","Только юридическую проверку документов"],
+        correct:1, answer:"«Проверка перед покупкой» = обследование квартиры. Тип дома определяет риски (панельный 1960-х vs монолит 2000-х — разные вероятные дефекты). Площадь — стоимость. Срочность: сделка через 2 дня — нужен срочный выезд." },
+      { id:"B5.6", level:"b", pts:2, text:"Клиент использует термины, которых МПП не понимает (например: «нам нужна экспертиза по 44-ФЗ»). Как должен действовать МПП?",
+        warn:"ВНИМАНИЕ: ответы похожи — читайте внимательно",
+        opts:["Делать вид, что понимает, и согласиться","Уточнить у клиента или у руководителя, прежде чем отвечать: «Уточните, пожалуйста — вам нужна экспертиза для тендера/госзакупки? Это важно для правильного состава документа»","Отказать: «Мы этим не занимаемся»","Записать запрос и передать без уточнения"],
+        correct:1, answer:"Честное «уточню» лучше уверенного «да, конечно». 44-ФЗ — это госзакупки, там особые требования. МПП, не знающий этого, должен не фантазировать, а уточнить. Клиент ценит профессионализм, а не видимость знания." },
+      { id:"B5.7", level:"b", pts:2, text:"Как МПП объяснить заказчику, почему технический документ имеет ценность ДАЖЕ если здание «выглядит нормально»?",
+        warn:"ВНИМАНИЕ: ответы похожи — читайте внимательно",
+        opts:["«Потому что так требует закон»","«Многие дефекты невидимы снаружи: коррозия арматуры внутри бетона, скрытые трещины в фундаменте. Визуально нормальное здание может иметь серьёзные скрытые проблемы. Обследование — это страховка и уверенность»","«Всем надо, поэтому и вам надо»","«Иначе штрафы от Госстройнадзора»"],
+        correct:1, answer:"Клиент, у которого «всё нормально», не видит потребности. МПП должен создать осознание риска через логику: «вы же проверяете машину перед дальней дорогой, даже если она едет нормально?»" },
+      { id:"C5.1", level:"c", pts:5, type:"open", text:"РОЛЕВАЯ СИТУАЦИЯ. Запишите ваш ответ на звонок:\n«Алло, добрый день. У нас проблема — наш арендатор говорит, что мы им сдали аварийное здание, угрожает судом. Здание 1965 года, кирпич, 3 этажа, 800 м². Нам срочно нужно заключение, что здание нормальное. Сколько стоит и когда сможете?»\nНапишите скрипт ответа. Оцените ситуацию технически и коммерчески.",
+        answer:"ПРАВИЛЬНЫЙ ОТВЕТ: «Добрый день! Понял — ситуация срочная. Уточню 2–3 вещи для правильного решения: (1) Есть ли видимые признаки опасности: трещины, прогибы? (2) Есть ли у вас проектная документация? (3) Арендатор уже подал в суд или это угроза? Если уже в суде — вам нужен документ с определёнными юридическими характеристиками (СТЭ). Если досудебный конфликт — наш ТЗК, как правило, достаточен. Мы можем выехать в течение 1–3 дней. 800 м² кирпичного 3-этажного — ориентировочно от [X тыс.], точная цифра после КП. Срочность = доплата 30%. Уточню у руководителя ближайшую дату — перезвоню через 30 минут?». ВАЖНО: МПП НЕ обещает написать «здание нормальное» — результат объективен." },
+      { id:"C5.2", level:"c", pts:5, type:"open", text:"РАЗВЁРНУТЫЙ ОТВЕТ. Опишите «идеальный сценарий» работы МПП с лидом от первого звонка до подписания договора: 7–10 конкретных шагов.",
+        answer:"1. Первый контакт: приветствие, представление компании. 2. Квалификация: выяснить объект, цель, тип здания, площадь, наличие документации. 3. Первичная консультация: объяснить, какой продукт подходит. 4. Передача инженеру: брифинг с ключевыми данными. 5. Получение КП: проверить, что КП отвечает запросу. 6. Отправка КП: с пояснительным комментарием. 7. Follow-up через 1–2 дня: «получили, есть вопросы?». 8. Работа с возражениями: цена, сроки, состав. 9. Согласование и оформление договора. 10. Передача объекта инженеру с полным брифингом." },
+      { id:"C5.3", level:"c", pts:5, type:"open", text:"ПИТЧ. Напишите свой «питч» для объяснения коллегам-МПП (без технического образования) простым языком: зачем нужно обследование зданий, что мы на самом деле продаём, и как это объяснить клиенту за 2–3 минуты.",
+        answer:"Мы продаём не «обследование», мы продаём уверенность и защиту. Собственник здания несёт ответственность по ФЗ-384. Наш документ (ТЗК): (1) защита собственника — «я знал о проблемах и принял меры»; (2) конкретное руководство к действию — что именно починить; (3) юридически значимый документ при спорах, страховании, сделках; (4) спокойствие. Клиентам говорим: «Вы же делаете техобслуживание машины, хотя она едет? Здание — то же самое, только гораздо дороже и ошибка обходится дороже»." },
+    ]
+  }
+];
+
+// ============================================================
+// STATE
+// ============================================================
+const STORAGE_KEY = 'mpp_exam_v3';
+let state = {
+  name: '', date: '', role: 'МПП', checker: '',
+  currentBlock: 0,
+  answers: {}, // questionId -> { selected: idx, text: str }
+  showAnswers: false,
+  started: false,
+  submitted: false
+};
+
+function loadState() {
+  try {
+    const saved = localStorage.getItem(STORAGE_KEY);
+    if (saved) state = { ...state, ...JSON.parse(saved) };
+  } catch(e) {}
+}
+
+function saveState() {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  showSaveIndicator();
+}
+
+function showSaveIndicator() {
+  const el = document.getElementById('saveIndicator');
+  el.classList.add('show');
+  clearTimeout(el._t);
+  el._t = setTimeout(() => el.classList.remove('show'), 1500);
+}
+
+// ============================================================
+// PROGRESS
+// ============================================================
+function countAnswered() {
+  return Object.keys(state.answers).length;
+}
+
+function updateProgress() {
+  const total = 100;
+  const done = countAnswered();
+  const pct = Math.round(done / total * 100);
+  document.getElementById('globalProgress').style.width = pct + '%';
+  document.getElementById('progressText').textContent = done + ' / ' + total;
+}
+
+function getBlockCompletion(blockIdx) {
+  const block = EXAM_DATA[blockIdx];
+  const answered = block.questions.filter(q => state.answers[q.id] !== undefined).length;
+  return { answered, total: block.questions.length };
+}
+
+// ============================================================
+// START / NAVIGATION
+// ============================================================
+function startExam() {
+  state.name = document.getElementById('inputName').value || '—';
+  state.date = document.getElementById('inputDate').value || new Date().toLocaleDateString('ru-RU');
+  state.role = document.getElementById('inputRole').value || 'МПП';
+  state.checker = document.getElementById('inputChecker').value || '—';
+  state.started = true;
+  saveState();
+  document.getElementById('screen-intro').style.display = 'none';
+  document.getElementById('screen-exam').style.display = 'block';
+  renderBlockNav();
+  renderBlock(state.currentBlock);
+}
+
+function renderBlockNav() {
+  const nav = document.getElementById('blockNav');
+  nav.innerHTML = '';
+  EXAM_DATA.forEach((block, i) => {
+    const { answered, total } = getBlockCompletion(i);
+    const completed = answered === total;
+    const active = i === state.currentBlock;
+    const btn = document.createElement('button');
+    btn.className = 'block-tab' + (active ? ' active' : '') + (completed ? ' completed' : '');
+    btn.textContent = 'Блок ' + (i + 1) + ': ' + block.title.split(' ').slice(0,2).join(' ');
+    if (answered > 0 && !completed) btn.textContent += ' (' + answered + '/' + total + ')';
+    btn.onclick = () => { state.currentBlock = i; saveState(); renderBlockNav(); renderBlock(i); };
+    nav.appendChild(btn);
+  });
+}
+
+// ============================================================
+// RENDER BLOCK
+// ============================================================
+function renderBlock(blockIdx) {
+  const block = EXAM_DATA[blockIdx];
+  const container = document.getElementById('blockContent');
+  const { answered, total } = getBlockCompletion(blockIdx);
+
+  let html = `
+    <div class="block-header">
+      <div class="block-num">Блок ${block.id} из ${EXAM_DATA.length}</div>
+      <div class="block-title">${block.title}</div>
+      <div class="block-desc">${block.desc}</div>
+      <div class="block-score-badge">
+        <div class="block-score-num">${answered}/${total}</div>
+        <div class="block-score-label">Отвечено</div>
+      </div>
+    </div>
+  `;
+
+  const levels = [
+    { key: 'a', label: 'A — Базовый', pts: '1 балл', cls: 'a' },
+    { key: 'b', label: 'B — Средний', pts: '2 балла', cls: 'b' },
+    { key: 'c', label: 'C — Сложный', pts: '5 баллов', cls: 'c' }
+  ];
+
+  for (const lvl of levels) {
+    const qs = block.questions.filter(q => q.level === lvl.key);
+    if (!qs.length) continue;
+    html += `
+      <div class="level-section">
+        <div class="level-header">
+          <span class="level-pill ${lvl.cls}">${lvl.label}</span>
+          <span class="level-title">${qs.length} вопросов</span>
+          <span class="level-points">${lvl.pts} / вопрос</span>
+        </div>
+    `;
+    for (const q of qs) {
+      html += renderQuestion(q);
+    }
+    html += '</div>';
+  }
+
+  // Navigation buttons
+  const hasPrev = blockIdx > 0;
+  const hasNext = blockIdx < EXAM_DATA.length - 1;
+  html += `
+    <div class="block-actions">
+      <label class="answers-toggle" onclick="toggleAnswers()">
+        <div class="toggle-switch${state.showAnswers ? ' on' : ''}" id="toggleSwitch"></div>
+        Показывать правильные ответы
+      </label>
+      <div style="display:flex;gap:10px;flex-wrap:wrap">
+        ${hasPrev ? `<button class="btn btn-secondary" onclick="goBlock(${blockIdx-1})">← Назад</button>` : ''}
+        ${hasNext ? `<button class="btn btn-next" onclick="goBlock(${blockIdx+1})">Следующий блок →</button>` : `<button class="btn btn-primary" onclick="showResults()">📊 Завершить и получить результаты</button>`}
+      </div>
+    </div>
+  `;
+
+  container.innerHTML = html;
+  updateProgress();
+  attachListeners();
+}
+
+function renderQuestion(q) {
+  const ans = state.answers[q.id];
+  const answered = ans !== undefined;
+  const isOpen = q.type === 'open';
+
+  let cardClass = 'question-card';
+  if (answered) cardClass += ' answered';
+  if (answered && !isOpen && ans.selected === q.correct) cardClass += ' correct';
+  if (answered && !isOpen && ans.selected !== undefined && ans.selected !== q.correct) cardClass += ' wrong';
+
+  let html = `<div class="${cardClass}" id="qcard-${q.id}">`;
+  html += `<div class="q-header">
+    <div class="q-num level-${q.level}">${q.id}</div>
+    <div class="q-text">${q.text.replace(/\n/g, '<br>')}</div>
+    <div class="q-points">${q.pts} б.</div>
+  </div>`;
+
+  if (q.warn) {
+    html += `<div class="warn-box">⚠ ${q.warn}</div>`;
+  }
+
+  if (isOpen) {
+    const textVal = (ans && ans.text) ? ans.text : '';
+    html += `<div class="open-area">
+      <textarea class="open-textarea${textVal ? ' has-content' : ''}" 
+        id="textarea-${q.id}" 
+        placeholder="Напишите развёрнутый ответ здесь..."
+        oninput="saveOpenAnswer('${q.id}', this)"
+      >${textVal}</textarea>
+      <div class="char-count" id="chars-${q.id}">${textVal.length} символов</div>
+    </div>`;
+  } else {
+    html += `<div class="options-list">`;
+    q.opts.forEach((opt, i) => {
+      const letters = ['А', 'Б', 'В', 'Г'];
+      let cls = 'option-label';
+      if (answered && ans.selected === i) {
+        cls += (i === q.correct) ? ' correct-answer' : ' wrong-answer';
+      }
+      if (answered && i === q.correct && state.showAnswers) {
+        cls += ' correct-answer';
+      }
+      const checked = (answered && ans.selected === i) ? 'checked' : '';
+      html += `<label class="${cls}" id="opt-${q.id}-${i}">
+        <input type="radio" name="q-${q.id}" value="${i}" ${checked} onchange="saveAnswer('${q.id}', ${i})">
+        <span class="opt-letter">${letters[i]}</span>
+        <span class="opt-text">${opt}</span>
+      </label>`;
+    });
+    html += `</div>`;
+  }
+
+  if (state.showAnswers && answered) {
+    html += `<div class="answer-reveal show">
+      <div class="answer-reveal-label">✓ Правильный ответ и объяснение</div>
+      <div class="answer-reveal-text">${q.answer}</div>
+    </div>`;
+  }
+
+  html += '</div>';
+  return html;
+}
+
+// ============================================================
+// ANSWER SAVING
+// ============================================================
+function attachListeners() {
+  // Textarea auto-save already via oninput
+}
+
+function saveAnswer(qId, selectedIdx) {
+  state.answers[qId] = { selected: selectedIdx };
+  saveState();
+  updateProgress();
+  renderBlockNav();
+
+  // Update UI immediately
+  const qCard = document.getElementById('qcard-' + qId);
+  if (qCard) {
+    const q = findQuestion(qId);
+    if (!q) return;
+    qCard.classList.add('answered');
+    if (selectedIdx === q.correct) qCard.classList.add('correct');
+    else qCard.classList.add('wrong');
+
+    // Update option styles
+    q.opts.forEach((_, i) => {
+      const lbl = document.getElementById('opt-' + qId + '-' + i);
+      if (!lbl) return;
+      lbl.className = 'option-label';
+      if (i === selectedIdx) lbl.className += (i === q.correct) ? ' correct-answer' : ' wrong-answer';
+      else if (state.showAnswers && i === q.correct) lbl.className += ' correct-answer';
+    });
+
+    // Show answer if toggle is on
+    let reveal = qCard.querySelector('.answer-reveal');
+    if (state.showAnswers) {
+      if (!reveal) {
+        const div = document.createElement('div');
+        div.className = 'answer-reveal show';
+        div.innerHTML = `<div class="answer-reveal-label">✓ Правильный ответ и объяснение</div><div class="answer-reveal-text">${q.answer}</div>`;
+        qCard.appendChild(div);
+      } else {
+        reveal.classList.add('show');
+      }
+    }
+  }
+}
+
+function saveOpenAnswer(qId, el) {
+  const text = el.value;
+  state.answers[qId] = { text };
+  const counter = document.getElementById('chars-' + qId);
+  if (counter) counter.textContent = text.length + ' символов';
+  if (text.length > 0) el.classList.add('has-content');
+  else el.classList.remove('has-content');
+  saveState();
+  updateProgress();
+  renderBlockNav();
+}
+
+function findQuestion(qId) {
+  for (const block of EXAM_DATA) {
+    for (const q of block.questions) {
+      if (q.id === qId) return q;
+    }
+  }
+  return null;
+}
+
+function toggleAnswers() {
+  state.showAnswers = !state.showAnswers;
+  saveState();
+  const sw = document.getElementById('toggleSwitch');
+  if (sw) sw.className = 'toggle-switch' + (state.showAnswers ? ' on' : '');
+  renderBlock(state.currentBlock);
+}
+
+function goBlock(idx) {
+  state.currentBlock = idx;
+  saveState();
+  renderBlockNav();
+  renderBlock(idx);
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// ============================================================
+// RESULTS
+// ============================================================
+function calcBlockScores(blockIdx) {
+  const block = EXAM_DATA[blockIdx];
+  let scoreA = 0, maxA = 0, scoreB = 0, maxB = 0, scoreC = 0, maxC = 0;
+  for (const q of block.questions) {
+    const ans = state.answers[q.id];
+    if (q.level === 'a') {
+      maxA += q.pts;
+      if (ans && ans.selected === q.correct) scoreA += q.pts;
+    } else if (q.level === 'b') {
+      maxB += q.pts;
+      if (ans && ans.selected === q.correct) scoreB += q.pts;
+    } else {
+      maxC += q.pts;
+      if (ans && ans.text && ans.text.length > 30) scoreC += Math.round(q.pts * 0.4);
+    }
+  }
+  return { scoreA, maxA, scoreB, maxB, scoreC, maxC };
+}
+
+function showResults() {
+  document.getElementById('screen-exam').style.display = 'none';
+  document.getElementById('screen-results').style.display = 'block';
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+
+  let totalScore = 0, totalMax = 0;
+  const blockScores = EXAM_DATA.map((_, i) => {
+    const s = calcBlockScores(i);
+    const blockTotal = s.scoreA + s.scoreB + s.scoreC;
+    const blockMax = s.maxA + s.maxB + s.maxC;
+    totalScore += blockTotal;
+    totalMax += blockMax;
+    return { ...s, blockTotal, blockMax };
+  });
+
+  const pct = Math.round(totalScore / totalMax * 100);
+  const level = getLevel(pct);
+
+  // Hero
+  document.getElementById('resultsHero').innerHTML = `
+    <div class="results-name">${state.name} • ${state.role} • ${state.date}</div>
+    <div class="results-score-big">${totalScore}</div>
+    <div class="results-score-max">из ${totalMax} баллов (${pct}%)</div>
+    <div class="results-level-badge" style="background:${level.color}">${level.label}</div>
+    <div class="results-level-desc">${level.desc}</div>
+  `;
+
+  // Block cards
+  let blocksHtml = '';
+  EXAM_DATA.forEach((block, i) => {
+    const s = blockScores[i];
+    const pctA = s.maxA ? Math.round(s.scoreA/s.maxA*100) : 0;
+    const pctB = s.maxB ? Math.round(s.scoreB/s.maxB*100) : 0;
+    const pctC = s.maxC ? Math.round(s.scoreC/s.maxC*100) : 0;
+    blocksHtml += `
+      <div class="result-block-card">
+        <div class="rbc-title">Блок ${i+1}: ${block.title}</div>
+        <div class="rbc-bars">
+          <div class="rbc-bar-row a">
+            <span class="rbc-bar-label">A</span>
+            <div class="rbc-bar-track"><div class="rbc-bar-fill" style="width:${pctA}%"></div></div>
+            <span class="rbc-score">${s.scoreA}/${s.maxA}</span>
+          </div>
+          <div class="rbc-bar-row b">
+            <span class="rbc-bar-label">B</span>
+            <div class="rbc-bar-track"><div class="rbc-bar-fill" style="width:${pctB}%"></div></div>
+            <span class="rbc-score">${s.scoreB}/${s.maxB}</span>
+          </div>
+          <div class="rbc-bar-row c">
+            <span class="rbc-bar-label">C</span>
+            <div class="rbc-bar-track"><div class="rbc-bar-fill" style="width:${pctC}%"></div></div>
+            <span class="rbc-score">${s.scoreC}/${s.maxC}*</span>
+          </div>
+        </div>
+        <div class="rbc-total">
+          <span class="rbc-total-label">Итого</span>
+          <span class="rbc-total-score">${s.blockTotal} / ${s.blockMax}</span>
+        </div>
+      </div>
+    `;
+  });
+  document.getElementById('resultsBlocks').innerHTML = blocksHtml;
+
+  // Weakest blocks
+  const sorted = blockScores.map((s, i) => ({ i, pct: s.blockMax ? Math.round(s.blockTotal/s.blockMax*100) : 0 })).sort((a,b) => a.pct - b.pct);
+  const weakBlocks = sorted.slice(0, 3).map(x => EXAM_DATA[x.i].title).join(', ');
+
+  document.getElementById('recommendationsCard').innerHTML = `
+    <div class="rec-title">Рекомендации по обучению</div>
+    <div class="rec-item">
+      <div class="rec-icon">🎯</div>
+      <div class="rec-text">
+        <strong>Уровень знаний: ${level.label}</strong>
+        <span>${level.recommendation}</span>
+      </div>
+    </div>
+    <div class="rec-item">
+      <div class="rec-icon">📚</div>
+      <div class="rec-text">
+        <strong>Приоритетные темы для изучения</strong>
+        <span>${weakBlocks}</span>
+      </div>
+    </div>
+    <div class="rec-item">
+      <div class="rec-icon">ℹ️</div>
+      <div class="rec-text">
+        <strong>Примечание по уровню C</strong>
+        <span>Открытые вопросы (уровень C) оценены автоматически по факту наличия развёрнутого ответа (40% от максимума). Окончательную оценку выставляет проверяющий.</span>
+      </div>
+    </div>
+    <div class="rec-item">
+      <div class="rec-icon">👤</div>
+      <div class="rec-text">
+        <strong>Проверяющий</strong>
+        <span>${state.checker || '—'} | Дата: ${state.date}</span>
+      </div>
+    </div>
+  `;
+}
+
+function getLevel(pct) {
+  if (pct >= 90) return { label: 'Отличный результат', color: '#059669', desc: 'Глубокое понимание технических основ, продукта и нормативной базы. Может работать самостоятельно.', recommendation: 'Поддерживающий курс. Возможно наставничество для новых МПП.' };
+  if (pct >= 75) return { label: 'Достаточный уровень', color: '#2563EB', desc: 'Хорошо ориентируется в продукте, умеет квалифицировать запрос, знает ключевые нормы.', recommendation: 'Самостоятельная работа с поддержкой. Занятие по 1–2 слабым темам.' };
+  if (pct >= 60) return { label: 'Базовый уровень', color: '#D97706', desc: 'Понимает основные понятия, может вести первичную квалификацию. Нуждается в поддержке при сложных запросах.', recommendation: 'Углублённые занятия по слабым блокам. Разбор реальных сделок.' };
+  if (pct >= 40) return { label: 'Начальный уровень', color: '#EA580C', desc: 'Базовая терминология частично усвоена. Слабое понимание нормативной базы.', recommendation: 'Курс по темам 3, 4, 5. Разбор ошибок. Повторный тест через 3 нед.' };
+  return { label: 'Начинающий', color: '#DC2626', desc: 'Серьёзные пробелы в терминологии и конструктиве. Не может квалифицировать запрос.', recommendation: 'Интенсивный курс с нуля по всем 5 темам. Ментор. Повторный тест через 4 нед.' };
+}
+
+function restartExam() {
+  if (!confirm('Вы уверены? Все ответы будут удалены.')) return;
+  localStorage.removeItem(STORAGE_KEY);
+  location.reload();
+}
+
+// ============================================================
+// INIT
+// ============================================================
+document.addEventListener('DOMContentLoaded', () => {
+  loadState();
+  // Set today's date default
+  const today = new Date().toISOString().split('T')[0];
+  document.getElementById('inputDate').value = state.date || today;
+  document.getElementById('inputName').value = state.name || '';
+  document.getElementById('inputRole').value = state.role || 'МПП';
+  document.getElementById('inputChecker').value = state.checker || '';
+
+  if (state.started) {
+    document.getElementById('screen-intro').style.display = 'none';
+    document.getElementById('screen-exam').style.display = 'block';
+    renderBlockNav();
+    renderBlock(state.currentBlock);
+  }
+  updateProgress();
+});
+</script>
+
+</body>
+</html>
